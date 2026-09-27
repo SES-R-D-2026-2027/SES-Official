@@ -34,8 +34,8 @@ The final stack will be confirmed during technical planning.
 
 ## Documentation
 
-- Request for Proposal (RFP) V1: [Add link]
-- Scope of Work (SoW) Template V1: [Add link]
+- Request for Proposal (RFP) V1
+- Scope of Work (SoW) Template V1
 
 ## Getting Started
 
