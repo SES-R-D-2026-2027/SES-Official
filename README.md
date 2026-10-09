@@ -1,46 +1,58 @@
-# SES Official Website
+# SES Official Website (ses-web)
 
-Official website of the Software Engineering Society (SES), maintained by the Research & Development Department.
+Official website of the Software Engineering Society (SES), FAST-NUCES, maintained by the
+Research & Development Department.
 
-## About
+This repo is the **frontend only** (Next.js).
+(Express + MongoDB); this site talks to it over HTTP and runs on typed mock data until it is ready.
 
-This repository contains the source code for the official SES web presence: a platform to communicate the society's identity, activities, departments, events, projects, and research initiatives to students, members, and collaborators.
+## Stack
 
-## Status
+Next.js 16 (App Router, Cache Components) · React 19 · TypeScript (strict) · Tailwind CSS v4 ·
+Motion (`motion/react`) · cva + clsx + tailwind-merge · lucide-react · Zod.
 
-Version 1 is in active development. Requirements are defined in the project RFP, and a Scope of Work is being finalized against it. Scope, structure, and technology choices may still change during technical planning.
+## Getting started
 
-## Planned V1 Features
+Requirements: Node.js LTS (see `.nvmrc`; Next.js needs ≥ 20.9) and npm.
 
-- Home / landing page
-- About SES (vision, mission, objectives)
-- Departments and organizational structure
-- Leadership and team profiles
-- Events (upcoming and past)
-- Project showcase
-- Research and development initiatives
-- Technology tracks
-- Resources
-- Announcements and updates
-- Contact and engagement
+```bash
+nvm use                 # optional, picks the Node version from .nvmrc
+npm install
+cp .env.example .env.local
+npm run dev             # http://localhost:3000
+```
 
-## Technical Direction
+### Environment
 
-The following technologies are under consideration as a preferred direction, not a final commitment:
+| Variable               | Default                 | Purpose                                                     |
+| ---------------------- | ----------------------- | ----------------------------------------------------------- |
+| `DATA_SOURCE`          | `mock`                  | `mock` reads `src/content/mock`, `api` fetches from ses-api |
+| `API_URL`              | `http://localhost:4000` | server-side calls to ses-api                                |
+| `NEXT_PUBLIC_API_URL`  | `http://localhost:4000` | browser-side calls (contact/join forms)                     |
+| `NEXT_PUBLIC_SITE_URL` | `http://localhost:3000` | canonical URLs, sitemap, Open Graph                         |
 
-Next.js, React, Node.js, Express.js, MongoDB (MERN ecosystem), Python, Angular, Webflow
+To use real data, start ses-api locally, set `DATA_SOURCE=api`, and make sure ses-api allows
+`http://localhost:3000` in its `CORS_ORIGINS`.
 
-The final stack will be confirmed during technical planning.
+## Scripts
 
-## Documentation
+```bash
+npm run dev           # dev server
+npm run lint          # ESLint
+npm run typecheck     # generate route types + tsc --noEmit
+npm run format        # Prettier (sorts Tailwind classes too)
+npm run format:check  # Prettier without writing
+npm run build         # production build
+npm run start         # serve the production build
+```
 
-- Request for Proposal (RFP) V1
-- Scope of Work (SoW) Template V1
+## Where things live
 
-## Getting Started
+- `docs/DESIGN.md` is the design source of truth; `src/styles/tokens.css` implements it.
+- `docs/REQUIREMENTS.md` lists the scope (FR/NFR); `docs/API-CONTRACT.md` the data shapes.
+- `CLAUDE.md` describes the folder structure and the golden rules for contributors.
 
-Setup instructions will be added once the technical stack is finalized.
+## Contributing
 
-## Maintained By
-
-Research & Development Department, Software Engineering Society (SES)
+Small, focused PRs with conventional commits (`feat:`, `fix:`, `style:`, `chore:`). Run lint,
+typecheck and build before opening a PR. Every PR is reviewed by a teammate (NFR-08).

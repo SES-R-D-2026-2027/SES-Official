@@ -1,0 +1,135 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+/* Don't generate utilities from docs and agent notes (they mention example classes). */
+@source not "../../docs";
+@source not "../../.claude";
+@source not "../../CLAUDE.md";
+@source not "../../PROMPTS.md";
+
+/* ───────── Custom utilities (docs/DESIGN.md §3) ───────── */
+
+@utility border-brutal {
+  border: var(--ses-border-width) solid var(--ses-ink);
+}
+
+/* single-side brutal borders (sticky header, footer) */
+@utility border-b-brutal {
+  border-bottom: var(--ses-border-width) solid var(--ses-ink);
+}
+
+@utility border-t-brutal {
+  border-top: var(--ses-border-width) solid var(--ses-ink);
+}
+
+/* the standard neobrutalist box */
+@utility brutal {
+  border: var(--ses-border-width) solid var(--ses-ink);
+  border-radius: var(--ses-radius);
+  box-shadow: var(--shadow-brutal);
+}
+
+/* hover lift + click press, used by buttons and clickable tiles */
+@utility press {
+  transition:
+    transform var(--ses-duration-fast) var(--ease-soft),
+    box-shadow var(--ses-duration-fast) var(--ease-soft),
+    rotate var(--ses-duration-fast) var(--ease-soft);
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-brutal-lg);
+  }
+  &:active {
+    transform: translate(var(--ses-shadow-offset), var(--ses-shadow-offset));
+    box-shadow: var(--shadow-brutal-none);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    &:hover,
+    &:active {
+      transform: none;
+    }
+  }
+}
+
+@utility tilt-l {
+  rotate: calc(var(--ses-tilt) * -1);
+}
+
+@utility tilt-r {
+  rotate: var(--ses-tilt);
+}
+
+/* tilted elements straighten on hover / keyboard focus inside (DESIGN.md §7) */
+@utility straighten {
+  transition: rotate var(--ses-duration-base) var(--ease-brutal);
+  &:hover,
+  &:focus-within {
+    rotate: 0deg;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+/* infinite ticker (<Marquee>): the track holds two copies and slides by half its width */
+@utility marquee {
+  & > [data-marquee-track] {
+    animation: ses-marquee var(--ses-marquee-duration) linear infinite;
+  }
+  &:hover > [data-marquee-track],
+  &:focus-within > [data-marquee-track],
+  &[data-paused="true"] > [data-marquee-track] {
+    animation-play-state: paused;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    & > [data-marquee-track] {
+      animation: none;
+      flex-wrap: wrap;
+      width: auto;
+    }
+    & [data-marquee-copy] {
+      display: none;
+    }
+  }
+}
+
+@keyframes ses-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility dot-grid {
+  background-image: radial-gradient(var(--ses-dot) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+@utility focus-ring {
+  &:focus-visible {
+    outline: 3px solid var(--ses-focus);
+    outline-offset: 3px;
+  }
+}
+
+/* ───────── Base ───────── */
+
+@layer base {
+  /* lock page scroll while a modal <dialog> (mobile menu) is open */
+  html:has(dialog[open]) {
+    overflow: hidden;
+  }
+
+  body {
+    @apply bg-bg font-sans text-ink antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+  }
+
+  a {
+    @apply text-link;
+  }
+}

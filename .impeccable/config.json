@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "bounce-easing",
+        "value": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "createdAt": "2026-10-09T14:20:52.149Z",
+        "reason": "docs/DESIGN.md §3 specifies --ease-brutal as a deliberate small overshoot (playful neobrutalist motion language)"
+      }
+    ]
+  }
+}

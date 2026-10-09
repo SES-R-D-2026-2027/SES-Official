@@ -1,0 +1,113 @@
+/* ★ THE design file. Spec: docs/DESIGN.md §2–3. Keep both in sync.
+   Layer 1 PALETTE  → the only place hex codes exist
+   Layer 2 SEMANTIC → meaning per theme ([data-theme] blocks remap this layer only)
+   Layer 3 TAILWIND → exposes semantic tokens as utilities (bg-bg, text-ink, shadow-brutal…) */
+
+/* ───────── Layer 1 · PALETTE ───────── */
+:root {
+  --palette-ink: #0e1530;
+  --palette-paper: #fffbf2;
+  --palette-white: #ffffff;
+  --palette-gray: #4b5470; /* muted text, 7:1 on paper */
+  --palette-blue: #3b63a8; /* SES brand blue */
+  --palette-blue-bright: #2f5bd3; /* links, focus, "students." */
+  --palette-blue-pale: #dce6f7;
+  --palette-yellow: #ffd84d;
+  --palette-yellow-pale: #fff3b8;
+  --palette-mint: #7ee0a8;
+  --palette-lilac: #b9a6ff;
+  --palette-coral: #ff7a90;
+  --palette-sky: #8fd3ff;
+}
+
+/* ───────── Layer 2 · SEMANTIC (theme: neo) ───────── */
+:root,
+[data-theme="neo"] {
+  --ses-bg: var(--palette-paper);
+  --ses-surface: var(--palette-white);
+  --ses-ink: var(--palette-ink);
+  --ses-muted: var(--palette-gray);
+  --ses-primary: var(--palette-blue);
+  --ses-on-primary: var(--palette-white);
+  --ses-accent: var(--palette-yellow);
+  --ses-on-accent: var(--palette-ink);
+  --ses-highlight: var(--palette-yellow-pale);
+  --ses-link: var(--palette-blue-bright);
+  --ses-focus: var(--palette-blue-bright);
+
+  --ses-tile-yellow: var(--palette-yellow);
+  --ses-tile-mint: var(--palette-mint);
+  --ses-tile-lilac: var(--palette-lilac);
+  --ses-tile-coral: var(--palette-coral);
+  --ses-tile-sky: var(--palette-sky);
+  --ses-tile-blue: var(--palette-blue-pale);
+  --ses-tile-paper: var(--palette-white);
+
+  --ses-border-width: 2px;
+  --ses-radius-sm: 6px;
+  --ses-radius: 10px;
+  --ses-radius-lg: 16px;
+  --ses-shadow-offset: 4px;
+  --ses-shadow-offset-lg: 7px;
+  --ses-tilt: 1.5deg;
+  --ses-dot: color-mix(in oklab, var(--ses-ink) 12%, transparent);
+
+  --ses-duration-fast: 150ms; /* keep in sync with lib/motion/tokens.ts */
+  --ses-duration-base: 250ms;
+  --ses-marquee-duration: 30s; /* one full ticker loop */
+  --ses-bento-row: minmax(10rem, auto); /* bento row height from md up (1x2 / 2x2 tiles span 2) */
+}
+
+/* Example of a future theme — only remap Layer 2:
+[data-theme="minimal"] { --ses-border-width: 1px; --ses-shadow-offset: 0px; --ses-tilt: 0deg; … } */
+
+/* ───────── Layer 3 · TAILWIND THEME ───────── */
+@theme {
+  --color-*: initial; /* remove Tailwind's default palette so only SES tokens exist */
+
+  /* fluid heading scale (DESIGN.md §4): text-h1 40→72px, text-h2 28→40px, text-h3 20→24px */
+  --text-h1: clamp(2.5rem, 1.75rem + 3.2vw, 4.5rem);
+  --text-h1--line-height: 1.05;
+  --text-h2: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+  --text-h2--line-height: 1.15;
+  --text-h3: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --text-h3--line-height: 1.25;
+}
+
+@theme inline {
+  --color-white: var(--palette-white);
+  --color-bg: var(--ses-bg);
+  --color-surface: var(--ses-surface);
+  --color-ink: var(--ses-ink);
+  --color-muted: var(--ses-muted);
+  --color-primary: var(--ses-primary);
+  --color-on-primary: var(--ses-on-primary);
+  --color-accent: var(--ses-accent);
+  --color-on-accent: var(--ses-on-accent);
+  --color-highlight: var(--ses-highlight);
+  --color-link: var(--ses-link);
+  --color-focus: var(--ses-focus);
+  --color-tile-yellow: var(--ses-tile-yellow);
+  --color-tile-mint: var(--ses-tile-mint);
+  --color-tile-lilac: var(--ses-tile-lilac);
+  --color-tile-coral: var(--ses-tile-coral);
+  --color-tile-sky: var(--ses-tile-sky);
+  --color-tile-blue: var(--ses-tile-blue);
+  --color-tile-paper: var(--ses-tile-paper);
+
+  --font-display: var(--font-space-grotesk), system-ui, sans-serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+  --font-hand: var(--font-caveat), cursive;
+
+  --radius-brutal-sm: var(--ses-radius-sm);
+  --radius-brutal: var(--ses-radius);
+  --radius-brutal-lg: var(--ses-radius-lg);
+
+  --shadow-brutal: var(--ses-shadow-offset) var(--ses-shadow-offset) 0 0 var(--ses-ink);
+  --shadow-brutal-lg: var(--ses-shadow-offset-lg) var(--ses-shadow-offset-lg) 0 0 var(--ses-ink);
+  --shadow-brutal-none: 0 0 0 0 var(--ses-ink);
+
+  --ease-brutal: cubic-bezier(0.34, 1.56, 0.64, 1); /* small overshoot = playful */
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
