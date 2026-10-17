@@ -83,4 +83,55 @@ export const projects: Project[] = [
     lookingForContributors: true,
     color: "yellow",
   },
+    {
+    ...base("pr-campus-bot", "campus-bot"),
+    name: "Campus Bot — TODO",
+    tagline: "Placeholder: a chatbot that answers common campus questions.",
+    description: "Placeholder description — TODO.",
+    projectStatus: "in-progress",
+    technologies: ["Python", "FastAPI", "Discord"],
+    techAreaIds: [],
+    contributorIds: ["tm-2", "tm-6"],
+    departmentId: "dep-infra",
+    repoUrl: "https://github.com/", // TODO(content)
+    stars: 34, // TODO(content)
+    gallery: [],
+    isFeatured: false,
+    lookingForContributors: true,
+    color: "coral",
+  },
+  {
+    ...base("pr-notes-hub", "notes-hub"),
+    name: "Notes Hub — TODO",
+    tagline: "Placeholder: a shared place for course notes and past papers.",
+    description: "Placeholder description — TODO.",
+    projectStatus: "shipped",
+    technologies: ["Next.js", "MongoDB"],
+    techAreaIds: [],
+    contributorIds: ["tm-1", "tm-8"],
+    liveUrl: "https://example.com/notes-hub", // TODO(content)
+    repoUrl: "https://github.com/", // TODO(content)
+    stars: 128, // TODO(content)
+    gallery: [],
+    isFeatured: false,
+    lookingForContributors: false,
+    color: "mint",
+  },
+  {
+    ...base("pr-trace-lab", "trace-lab"),
+    name: "Trace Lab — TODO",
+    tagline: "Placeholder: experiments with tracing and observability.",
+    description: "Placeholder description — TODO.",
+    projectStatus: "maintained",
+    technologies: ["Go", "OpenTelemetry"],
+    techAreaIds: [],
+    contributorIds: ["tm-9"],
+    departmentId: "dep-dist",
+    docsUrl: "https://example.com/trace-lab", // TODO(content)
+    stars: 61, // TODO(content)
+    gallery: [],
+    isFeatured: false,
+    lookingForContributors: false,
+    color: "lilac",
+  },
 ];
