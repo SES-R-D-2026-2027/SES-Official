@@ -35,12 +35,9 @@ export function ProjectCard({ project, departmentName, people }: ProjectCardProp
   return (
     <article className="brutal flex h-full flex-col gap-4 bg-tile-paper p-5">
       <div className="flex items-start justify-between gap-3">
-        <div className="flex flex-wrap gap-1.5">
-          <Tag color={project.color ?? "sky"}>{departmentName ?? "Independent"}</Tag>
-          <Tag color="paper">{statusLabels[project.projectStatus]}</Tag>
-        </div>
+        <Tag color={project.color ?? "sky"}>{departmentName ?? "Independent"}</Tag>
         {project.stars !== undefined && (
-          <span className="inline-flex items-center gap-1 rounded-brutal-sm bg-accent px-2 py-0.5 font-mono text-xs font-semibold border-brutal">
+          <span className="inline-flex shrink-0 items-center gap-1 rounded-brutal-sm bg-accent px-2 py-0.5 font-mono text-xs font-semibold border-brutal">
             <Star aria-hidden="true" className="size-3.5" />
             {formatCompact(project.stars)}
             <span className="sr-only"> GitHub stars</span>
@@ -48,8 +45,14 @@ export function ProjectCard({ project, departmentName, people }: ProjectCardProp
         )}
       </div>
 
-      {/* TODO: link the title to /projects/[slug] once the detail page exists */}
-      <h2 className="font-display text-h3 font-bold">{project.name}</h2>
+      <div className="flex flex-col gap-1">
+        <p className="font-mono text-xs font-semibold uppercase tracking-wider text-muted">
+          {statusLabels[project.projectStatus]}
+        </p>
+        {/* TODO: link the title to /projects/[slug] once the detail page exists */}
+        <h2 className="font-display text-h3 font-bold">{project.name}</h2>
+      </div>
+
       <p className="text-sm">{project.tagline}</p>
 
       <ul className="flex flex-wrap gap-1.5" aria-label="Tech stack">
@@ -60,19 +63,23 @@ export function ProjectCard({ project, departmentName, people }: ProjectCardProp
         ))}
       </ul>
 
-      {project.lookingForContributors && (
-        <p className="font-hand text-lg text-ink">looking for devs!</p>
-      )}
-
-      <div className="mt-auto flex flex-wrap items-center justify-between gap-3 border-t-2 border-ink pt-4">
-        <div className="flex items-center gap-3">
-          {people.length > 0 && <AvatarStack people={people} max={4} />}
-          {project.repoUrl && (
-            <Button href={project.repoUrl} external variant="ghost" size="sm">
-              Repo<span className="sr-only"> of {project.name}</span>
-            </Button>
+      {(people.length > 0 || project.lookingForContributors) && (
+        <div className="flex items-center justify-between gap-3">
+          {people.length > 0 ? <AvatarStack people={people} max={3} /> : <span />}
+          {project.lookingForContributors && (
+            <span className="font-hand text-lg text-ink">looking for devs!</span>
           )}
         </div>
+      )}
+
+      <div className="mt-auto flex items-center justify-between gap-3 border-t-2 border-ink pt-4">
+        {project.repoUrl ? (
+          <Button href={project.repoUrl} external variant="ghost" size="sm">
+            Repo<span className="sr-only"> of {project.name}</span>
+          </Button>
+        ) : (
+          <span className="font-mono text-xs uppercase text-muted">No repo yet</span>
+        )}
         {action && (
           <Button href={action.href} external size="sm">
             {action.label}
