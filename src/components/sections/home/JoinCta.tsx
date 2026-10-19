@@ -15,7 +15,7 @@ const discordUrl = siteConfig.socials.find((s) => s.icon === "discord")?.href;
 /** Big coral "Come build with us." block. Heading is ink, not white (contrast fix, DESIGN.md §6.8). */
 export function JoinCta() {
   return (
-    <Section labelledBy="join-title">
+    <Section id="join" labelledBy="join-title">
       <Reveal>
         <div className="relative flex flex-col items-center gap-6 brutal rounded-brutal-lg bg-tile-coral px-5 py-12 text-center text-ink shadow-brutal-lg md:px-12 md:py-16">
           <Draggable

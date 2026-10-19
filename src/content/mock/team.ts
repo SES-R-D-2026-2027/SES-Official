@@ -1,8 +1,8 @@
 import type { TeamMember } from "@/types/content";
 import { base } from "./_base";
 
-// TODO(content): placeholder people. Names are deliberately not real-sounding; photos are omitted
-// so avatars fall back to initials (one member has a placeholder photo to exercise that path).
+// TODO(content): names, photos and roles are intentional placeholders from the Campus Pulse
+// preview — no official team details were provided. Replace before launch.
 
 const member = (
   n: number,
@@ -10,30 +10,38 @@ const member = (
   position: string,
   role: TeamMember["role"],
   departmentId?: string,
-  photo?: TeamMember["photo"],
+  extras?: Partial<Pick<TeamMember, "photo" | "funFact" | "bio">>,
 ): TeamMember => ({
   ...base(`tm-${n}`, `member-${n}`),
   name,
   position,
   role,
   departmentId,
-  photo,
   links: [],
   order: n,
+  ...extras,
 });
 
 export const team: TeamMember[] = [
-  member(1, "Alpha Member", "President — TODO", "leadership", "dep-dist"),
-  member(2, "Beta Member", "Vice President — TODO", "leadership", "dep-dist", {
-    url: "/images/placeholder/photo-mint.svg",
-    alt: "Placeholder portrait",
+  member(1, "Society Lead", "Team profile · add official details", "leadership", "dep-tech", {
+    funFact: "Builds things · brings people together",
+    bio: "Placeholder bio — TODO.",
   }),
-  member(3, "Gamma Member", "Head of Compilers — TODO", "head", "dep-compilers"),
-  member(4, "Delta Member", "Head of OS — TODO", "head", "dep-os"),
-  member(5, "Epsilon Member", "Head of Hardware — TODO", "head", "dep-hw"),
-  member(6, "Zeta Member", "Head of Infrastructure — TODO", "head", "dep-infra"),
-  member(7, "Eta Member", "Head of ML — TODO", "head", "dep-ml"),
-  member(8, "Theta Member", "Member — TODO", "member", "dep-compilers"),
-  member(9, "Iota Member", "Member — TODO", "member", "dep-infra"),
-  member(10, "Kappa Member", "Member — TODO", "member"),
+  member(2, "Projects Lead", "Team profile", "leadership", "dep-projects", {
+    funFact: "Ideas · prototypes · late commits",
+  }),
+  member(3, "Events Lead", "Team profile · add official details", "leadership", "dep-events", {
+    funFact: "Meetups · workshops · good playlists",
+    bio: "Placeholder bio — TODO.",
+  }),
+  member(4, "Community Lead", "Team profile · add official details", "leadership", "dep-community", {
+    funFact: "New faces · big welcomes · snacks",
+    bio: "Placeholder bio — TODO.",
+  }),
+  member(5, "Design Lead", "Member — TODO", "head", "dep-design", {
+    funFact: "Stickers first, then the screens",
+  }),
+  member(6, "Compete Lead", "Member — TODO", "head", "dep-compete", {
+    funFact: "Shows up for game night. Wins optional.",
+  }),
 ];

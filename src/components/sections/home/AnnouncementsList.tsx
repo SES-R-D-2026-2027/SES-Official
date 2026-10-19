@@ -40,14 +40,13 @@ export function AnnouncementsList({ announcements }: AnnouncementsListProps) {
   const draggable = isEnabled("draggableStickers");
 
   return (
-    <Section labelledBy="announcements-title">
+    <Section id="announcements" labelledBy="announcements-title">
       <Card padding="lg" className="flex flex-col gap-8">
         <SectionHeading
           id="announcements-title"
           title={copy.title}
           description={copy.description}
           tags={[{ label: copy.tag, color: "coral" }]}
-          note={copy.note}
           action={
             <Button href="/announcements" variant="ghost" size="sm" arrow>
               Browse archive

@@ -5,6 +5,8 @@ import { JoinCta } from "@/components/sections/home/JoinCta";
 import { LabLife } from "@/components/sections/home/LabLife";
 import { ProjectsBento } from "@/components/sections/home/ProjectsBento";
 import { StatsRow } from "@/components/sections/home/StatsRow";
+import { TechPlayground } from "@/components/sections/home/TechPlayground";
+import { VibeMarquee } from "@/components/sections/home/VibeMarquee";
 import { homeCopy } from "@/content/home";
 import { getLatestAnnouncements } from "@/lib/data/announcements";
 import { getDepartments } from "@/lib/data/departments";
@@ -16,7 +18,7 @@ import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   description:
-    "SES is the student-run Software Engineering Society at FAST-NUCES. Join workshops, hackathons and open-source projects built by students.",
+    "SES is where FAST-NUCES students come together to build projects, learn new tech, make events happen and occasionally debate tabs vs. spaces.",
 });
 
 export default async function HomePage() {
@@ -30,7 +32,6 @@ export default async function HomePage() {
   ]);
   const projectStats = summarizeProjects(projects);
   const contributors = await getMembersByIds(projects.flatMap((p) => p.contributorIds));
-  const hackathon = upcoming.find((e) => e.category === "hackathon" && e.registrationUrl);
 
   return (
     <>
@@ -44,13 +45,14 @@ export default async function HomePage() {
           color,
         }))}
         activeProjects={projectStats.active}
-        hackathon={hackathon}
       />
       <StatsRow stats={stats} />
       <LabLife {...homeCopy.labLife} />
-      <EventsBento upcoming={upcoming} past={past} />
-      <ProjectsBento projects={projects} stats={projectStats} contributors={contributors} />
-      <AnnouncementsList announcements={announcements} />
+      {/* <EventsBento upcoming={upcoming} past={past} /> */}
+      {/* <ProjectsBento projects={projects} stats={projectStats} contributors={contributors} /> */}
+      <TechPlayground />
+      {/* <AnnouncementsList announcements={announcements} /> */}
+      <VibeMarquee />
       <JoinCta />
     </>
   );
