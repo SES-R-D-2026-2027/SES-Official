@@ -144,7 +144,7 @@ export function ProjectsBento({ projects, stats, contributors }: ProjectsBentoPr
   }));
 
   return (
-    <Section labelledBy="projects-title" background="surface" divider>
+    <Section id="projects" labelledBy="projects-title" background="surface" divider>
       <div className="flex flex-col gap-8">
         <SectionHeading
           id="projects-title"

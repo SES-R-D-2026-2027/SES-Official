@@ -75,7 +75,7 @@ export function DepartmentMap({ departments, centerLabel, className }: Departmen
           </span>
         </div>
 
-        <ul aria-label="Departments">
+        <ul aria-label="Teams">
           {departments.map((department, i) => {
             const isActive = department.id === activeId;
             return (
@@ -125,7 +125,7 @@ export function DepartmentMap({ departments, centerLabel, className }: Departmen
           </div>
         ) : (
           <p className="text-sm text-muted">
-            Hover or tap a department on the map to see what it builds.
+            Hover or tap a team on the map. Ideas welcome — skills optional.
           </p>
         )}
       </div>

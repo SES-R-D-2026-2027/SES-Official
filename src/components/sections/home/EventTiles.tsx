@@ -269,7 +269,7 @@ export function SuggestTile({ title, body, href }: { title: string; body: string
       <Lightbulb aria-hidden="true" className="size-8" />
       <h3 className="font-display text-xl font-bold">{title}</h3>
       <p className="text-sm">{body}</p>
-      <MoreLink>Suggest a talk</MoreLink>
+      <MoreLink>Bring it</MoreLink>
     </BentoTile>
   );
 }

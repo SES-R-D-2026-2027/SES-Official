@@ -26,6 +26,7 @@ const copy = homeCopy.events;
 const filters = [
   { value: "all", label: "All" },
   { value: "workshops", label: "Workshops", groups: ["workshop"] },
+  { value: "social", label: "Social", groups: ["meetup"] },
   { value: "talks", label: "Talks", groups: ["talk"] },
   { value: "hackathons", label: "Hackathons", groups: ["hackathon", "competition"] },
 ];
@@ -62,7 +63,7 @@ export function EventsBento({ upcoming, past }: EventsBentoProps) {
   }
 
   return (
-    <Section labelledBy="events-title">
+    <Section id="events" labelledBy="events-title">
       <div className="flex flex-col gap-8">
         <SectionHeading
           id="events-title"

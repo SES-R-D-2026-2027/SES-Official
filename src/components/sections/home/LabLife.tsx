@@ -12,13 +12,15 @@ export interface LabLifeProps {
   title: string;
   body: string;
   note: string;
+  activities: readonly string[];
   photos: readonly LabPhoto[];
 }
 
-const tilts: Tilt[] = ["left", "right", "left"];
+const tilts: Tilt[] = ["left", "right", "left", "right"];
+const activityColor = ["yellow", "mint", "lilac", "coral", "sky"] as const;
 
-/** "Built at 3 AM." block: copy + tilted polaroids (a swipe row on mobile). */
-export function LabLife({ tag, title, body, note, photos }: LabLifeProps) {
+/** "Yes, we touch grass." — polaroids + the people-side of SES. */
+export function LabLife({ tag, title, body, note, activities, photos }: LabLifeProps) {
   return (
     <Section labelledBy="lab-title" className="py-8 md:py-12">
       <Reveal>
@@ -29,15 +31,23 @@ export function LabLife({ tag, title, body, note, photos }: LabLifeProps) {
               {title}
             </h2>
             <p className="text-muted md:text-lg">{body}</p>
+            {activities.length > 0 && (
+              <ul className="flex flex-wrap gap-2" aria-label="Ways we hang out">
+                {activities.map((activity, index) => (
+                  <li key={activity}>
+                    <Tag color={activityColor[index % activityColor.length]}>{activity}</Tag>
+                  </li>
+                ))}
+              </ul>
+            )}
             <HandNote>{note}</HandNote>
           </div>
 
           {photos.length > 0 && (
-            // Swipe row on mobile (snap), grid from md. Focusable so keyboard users can scroll it.
             <ul
               tabIndex={0}
-              aria-label="Photos from the lab"
-              className="-mx-2 flex snap-x snap-mandatory gap-5 overflow-x-auto px-2 pt-2 pb-4 focus-ring md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:p-0 lg:col-span-3"
+              aria-label="Photos from SES"
+              className="-mx-2 flex snap-x snap-mandatory gap-5 overflow-x-auto px-2 pt-2 pb-4 focus-ring md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:p-0 lg:col-span-3"
             >
               {photos.map((photo, index) => (
                 <li key={photo.caption} className="w-60 shrink-0 snap-center md:w-auto">
