@@ -22,7 +22,7 @@ export const projects: Project[] = [
     technologies: ["TypeScript", "React Flow", "FastAPI"],
     techAreaIds: [],
     contributorIds: ["tm-1", "tm-2", "tm-8", "tm-9", "tm-10"],
-    departmentId: "dep-infra",
+    departmentId: "dep-dev",
     repoUrl: "https://github.com/", // TODO(content)
     liveUrl: "https://example.com/coursegraph", // TODO(content)
     stars: 418, // TODO(content)
@@ -41,7 +41,7 @@ export const projects: Project[] = [
     technologies: ["Rust", "RISC-V", "QEMU"],
     techAreaIds: [],
     contributorIds: ["tm-4", "tm-5"],
-    departmentId: "dep-os",
+    departmentId: "dep-dev",
     repoUrl: "https://github.com/", // TODO(content)
     docsUrl: "https://example.com/vessel-docs", // TODO(content)
     stars: 92, // TODO(content)
@@ -60,7 +60,7 @@ export const projects: Project[] = [
     technologies: ["Go", "eBPF", "Bubble Tea"],
     techAreaIds: [],
     contributorIds: ["tm-6", "tm-9"],
-    departmentId: "dep-dist",
+    departmentId: "dep-dev",
     repoUrl: "https://github.com/", // TODO(content)
     stars: 276, // TODO(content)
     gallery: [],
