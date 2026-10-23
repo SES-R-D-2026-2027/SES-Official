@@ -2,7 +2,15 @@
 // Keep `fast` / `base` in sync with --ses-duration-* in src/styles/tokens.css.
 
 // `count` is the one long duration: a number ticking up (<CountUp>), nothing moves on screen.
-export const duration = { fast: 0.15, base: 0.25, slow: 0.4, reveal: 0.5, count: 1.2 } as const;
+// `float` is one full bob of a looping <Float> (idle decoration, stopped under reduced motion).
+export const duration = {
+  fast: 0.15,
+  base: 0.25,
+  slow: 0.4,
+  reveal: 0.5,
+  count: 1.2,
+  float: 3.2,
+} as const;
 
 export const ease = {
   soft: [0.22, 1, 0.36, 1],
@@ -18,4 +26,4 @@ export const spring = {
 export const stagger = { tiles: 0.07, list: 0.05 } as const;
 
 // `nudge` = how far one arrow-key press moves a <Draggable>.
-export const distance = { reveal: 24, lift: 2, pageSlide: 8, nudge: 8 } as const;
+export const distance = { reveal: 24, lift: 2, pageSlide: 8, nudge: 8, float: 6 } as const;
