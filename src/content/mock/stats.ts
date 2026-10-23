@@ -1,35 +1,35 @@
 import type { SiteStats } from "@/types/content";
 
-// TODO(content): placeholder numbers from the approved mock-up. Replace with real figures
-// (admin-editable via ses-api later).
+// TODO(content): illustrative numbers for the homepage tiles (DESIGN.md / see.png).
+// Campus Pulse marked equivalent figures as demo stats — replace with real ones.
 
 export const stats: SiteStats = {
   items: [
     {
-      value: 6,
+      value: 9,
       label: "Departments",
-      description: "Covering distributed systems, compilers, OS, hardware and ML.",
+      description: "From development and media to events, finance and logistics.",
       note: "all active!",
       color: "yellow",
     },
     {
       value: 40,
       suffix: "+",
-      label: "Events every year",
-      description: "Workshops, keynote talks, demos and hackathons on campus.",
+      label: "Events survived",
+      description: "Workshops, meetups, game nights and whatever we organize next.",
       color: "mint",
     },
     {
       value: 25,
-      label: "Active projects",
-      description: "Production tools, campus-wide apps and peer-reviewed prototypes.",
+      label: "Projects shipped",
+      description: "Small experiments, side quests and a few that got real.",
       color: "lilac",
     },
     {
       value: 300,
       suffix: "+",
-      label: "Active members",
-      description: "Undergrads, graduate mentors and alumni across the globe.",
+      label: "Students reached",
+      description: "Builders, organizers and professional deadline negotiators.",
       note: "join us!",
       color: "coral",
     },

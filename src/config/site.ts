@@ -23,9 +23,9 @@ export interface SocialLink {
 export const siteConfig = {
   name: "Software Engineering Society",
   shortName: "SES",
-  tagline: "Software, built together by students.",
+  tagline: "Build cool things. Meet great people.",
   description:
-    "The student-run Software Engineering Society at FAST-NUCES: events, open-source projects, research and resources built by students.",
+    "SES is where students at FAST-NUCES come together to build projects, learn new tech, make events happen and occasionally debate tabs vs. spaces.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   version: "v0.1", // small version tag next to the logo
   theme: "neo",
@@ -33,7 +33,7 @@ export const siteConfig = {
   headerNote: "student run!", // handwritten note next to the logo
 
   footerBar: {
-    motto: "SES // runs on open source & student obsession",
+    motto: "SES // student-run, curiosity-fuelled, officially campus life",
     status: "Status: all nodes operational",
   },
 
@@ -41,6 +41,7 @@ export const siteConfig = {
     { label: "About", href: "/about" },
     { label: "Events", href: "/events" },
     { label: "Projects", href: "/projects" },
+    { label: "Mentors", href: "/mentors" },
     { label: "Research", href: "/research" },
     { label: "Resources", href: "/resources" },
   ] satisfies NavLink[],
@@ -80,10 +81,8 @@ export const siteConfig = {
   ] satisfies FooterColumn[],
 
   socials: [
-    { label: "GitHub", href: "https://github.com/", icon: "github" }, // TODO(content)
-    { label: "Discord", href: "https://discord.com/", icon: "discord" }, // TODO(content)
-    { label: "Instagram", href: "https://instagram.com/", icon: "instagram" }, // TODO(content)
-    { label: "LinkedIn", href: "https://linkedin.com/", icon: "linkedin" }, // TODO(content)
+    { label: "GitHub", href: "https://github.com/SES-R-D-2026-2027", icon: "github" }, // TODO(content)
+    { label: "Instagram", href: "https://www.instagram.com/ses.isb/", icon: "instagram" }, // TODO(content)
   ] satisfies SocialLink[],
 
   contact: {
