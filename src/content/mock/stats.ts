@@ -6,9 +6,9 @@ import type { SiteStats } from "@/types/content";
 export const stats: SiteStats = {
   items: [
     {
-      value: 6,
-      label: "Teams",
-      description: "Events, projects, community, tech, design and compete — all student-run.",
+      value: 9,
+      label: "Departments",
+      description: "From development and media to events, finance and logistics.",
       note: "all active!",
       color: "yellow",
     },

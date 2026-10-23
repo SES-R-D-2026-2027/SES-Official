@@ -23,7 +23,7 @@ export interface DepartmentMapProps {
 }
 
 // Node positions on a circle (in % of the square map); the first node sits at 12 o'clock.
-const RADIUS = 36;
+const RADIUS = 38;
 
 function position(index: number, count: number) {
   const angle = (-90 + (360 / count) * index) * (Math.PI / 180);
@@ -81,7 +81,7 @@ export function DepartmentMap({ departments, centerLabel, className }: Departmen
             return (
               <li
                 key={department.id}
-                className="absolute w-24 -translate-1/2 md:w-28"
+                className="absolute w-max max-w-24 -translate-1/2 md:max-w-28"
                 style={{ left: `${points[i].x}%`, top: `${points[i].y}%` }}
               >
                 <button
@@ -92,7 +92,7 @@ export function DepartmentMap({ departments, centerLabel, className }: Departmen
                   onFocus={() => setActiveId(department.id)}
                   onClick={() => setActiveId(department.id)}
                   className={cn(
-                    "w-full press brutal rounded-brutal-sm px-2 py-1.5 text-center text-xs leading-tight font-semibold focus-ring",
+                    "w-full press brutal rounded-brutal-sm px-1 py-1.5 text-center text-xs leading-tight font-semibold focus-ring sm:px-2",
                     tileColor({ color: department.color ?? "paper" }),
                     isActive && "underline decoration-2 underline-offset-2 shadow-brutal-lg",
                   )}

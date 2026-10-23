@@ -22,12 +22,12 @@ export const projects: Project[] = [
     projectStatus: "in-progress",
     technologies: ["Next.js", "TypeScript", "Node.js"],
     techAreaIds: [],
-    contributorIds: ["tm-1", "tm-2", "tm-5"],
-    departmentId: "dep-projects",
-    repoUrl: "https://github.com/",
-    liveUrl: "https://example.com/campusconnect",
-    stars: 12,
-    coverImage: screenshot("CampusConnect platform interface"),
+    contributorIds: ["tm-1", "tm-2", "tm-8", "tm-9", "tm-10"],
+    departmentId: "dep-dev",
+    repoUrl: "https://github.com/", // TODO(content)
+    liveUrl: "https://example.com/coursegraph", // TODO(content)
+    stars: 418, // TODO(content)
+    coverImage: screenshot("Placeholder screenshot of CourseGraph"),
     gallery: [],
     isFeatured: true,
     lookingForContributors: false,
@@ -42,10 +42,11 @@ export const projects: Project[] = [
     projectStatus: "in-progress",
     technologies: ["React", "Python"],
     techAreaIds: [],
-    contributorIds: ["tm-2", "tm-4"],
-    departmentId: "dep-projects",
-    repoUrl: "https://github.com/",
-    stars: 4,
+    contributorIds: ["tm-4", "tm-5"],
+    departmentId: "dep-dev",
+    repoUrl: "https://github.com/", // TODO(content)
+    docsUrl: "https://example.com/vessel-docs", // TODO(content)
+    stars: 92, // TODO(content)
     gallery: [],
     isFeatured: true,
     lookingForContributors: false,
@@ -60,8 +61,10 @@ export const projects: Project[] = [
     projectStatus: "idea",
     technologies: ["Flutter", "Maps"],
     techAreaIds: [],
-    contributorIds: ["tm-3"],
-    departmentId: "dep-community",
+    contributorIds: ["tm-6", "tm-9"],
+    departmentId: "dep-dev",
+    repoUrl: "https://github.com/", // TODO(content)
+    stars: 276, // TODO(content)
     gallery: [],
     isFeatured: true,
     lookingForContributors: true,
@@ -82,7 +85,7 @@ export const projects: Project[] = [
     lookingForContributors: true,
     color: "yellow",
   },
-    {
+  {
     ...base("pr-campus-bot", "campus-bot"),
     name: "Campus Bot — TODO",
     tagline: "Placeholder: a chatbot that answers common campus questions.",
