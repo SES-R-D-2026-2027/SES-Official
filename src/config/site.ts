@@ -41,6 +41,7 @@ export const siteConfig = {
     { label: "About", href: "/about" },
     { label: "Events", href: "/events" },
     { label: "Projects", href: "/projects" },
+    { label: "Mentors", href: "/mentors" },
     { label: "Research", href: "/research" },
     { label: "Resources", href: "/resources" },
   ] satisfies NavLink[],
