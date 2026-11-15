@@ -1,7 +1,7 @@
 import type { TileColor } from "@/types/content";
 
 // Site-wide settings: name, nav, footer, socials, contact.
-// TODO(content): replace placeholder URLs, email and address with the society's real details.
+// TODO(content): GitHub URL still needs confirming; Discord, logo and share image are not provided yet.
 
 export interface NavLink {
   label: string;
@@ -25,7 +25,7 @@ export const siteConfig = {
   shortName: "SES",
   tagline: "Build cool things. Meet great people.",
   description:
-    "SES is where students at FAST-NUCES come together to build projects, learn new tech, make events happen and occasionally debate tabs vs. spaces.",
+    "The Software Engineering Society at FAST-NUCES Islamabad promotes technical learning, innovation, and collaboration through workshops, events, and projects. It provides students with opportunities to develop their skills, explore new ideas, and contribute to a thriving software engineering community.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   version: "v0.1", // small version tag next to the logo
   theme: "neo",
@@ -82,11 +82,12 @@ export const siteConfig = {
 
   socials: [
     { label: "GitHub", href: "https://github.com/SES-R-D-2026-2027", icon: "github" }, // TODO(content)
-    { label: "Instagram", href: "https://www.instagram.com/ses.isb/", icon: "instagram" }, // TODO(content)
+    { label: "Instagram", href: "https://www.instagram.com/ses.isb/", icon: "instagram" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/company/nuses/", icon: "linkedin" },
   ] satisfies SocialLink[],
 
   contact: {
-    email: "ses@example.com", // TODO(content)
-    address: "Campus address — TODO", // TODO(content)
+    email: "ses.isb@nu.edu.pk",
+    address: "FAST NUCES, Islamabad",
   },
 } as const;

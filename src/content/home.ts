@@ -17,7 +17,7 @@ export const homeCopy = {
     titleHighlight: "things.",
     titleRest: "Meet great people.",
     intro:
-      "SES is where students come together to build projects, learn new tech, make events happen and occasionally debate tabs vs. spaces.",
+      "Welcome to SES! Explore our events, take part in workshops and competitions, and stay connected with everything happening in our society. Find your next opportunity and be part of the experience.",
     joinLabel: "Join the community",
     seeLabel: "See what's happening",
     seeHref: "#events",

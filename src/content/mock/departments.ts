@@ -2,8 +2,7 @@ import type { Department } from "@/types/content";
 import { base } from "./_base";
 
 // Real departments of the 2026-2027 term. memberIds/headId point at src/content/mock/team.ts.
-// TODO(content): the descriptions and responsibilities are short placeholders; replace them with
-// the society's own wording.
+// Descriptions and responsibilities are the society's own wording (content doc, Oct 2026).
 
 const department = (
   id: string,
@@ -13,12 +12,14 @@ const department = (
   color: Department["color"],
   memberIds: string[],
   order: number,
+  description: string,
+  responsibilities: string[],
 ): Department => ({
   ...base(id, slug),
   name,
   shortDescription,
-  description: "Placeholder description — TODO.",
-  responsibilities: ["Placeholder responsibility — TODO"],
+  description,
+  responsibilities,
   headId: memberIds[0],
   memberIds,
   color,
@@ -34,6 +35,11 @@ export const departments: Department[] = [
     "sky",
     ["tm-ashar"],
     1,
+    "Responsible for managing records, handling official correspondence, and coordinating information to ensure organized and efficient society operations.",
+    [
+      "Maintains records, documentation, and official correspondence.",
+      "Coordinates information and tracks tasks.",
+    ],
   ),
   department(
     "dep-ops",
@@ -43,6 +49,11 @@ export const departments: Department[] = [
     "yellow",
     ["tm-hamza-ahmed", "tm-mohsin-khan"],
     2,
+    "Handles event logistics and on-ground arrangements to ensure smooth execution.",
+    [
+      "Assists with event setup and arrangements.",
+      "Handles on-ground operations.",
+    ],
   ),
   department(
     "dep-security",
@@ -52,6 +63,11 @@ export const departments: Department[] = [
     "coral",
     ["tm-sana-idrees"],
     3,
+    "Responsible for managing access control and maintaining order during society activities.",
+    [
+      "Manages event access and crowd control.",
+      "Ensures order during events.",
+    ],
   ),
   department(
     "dep-dev",
@@ -61,6 +77,11 @@ export const departments: Department[] = [
     "mint",
     ["tm-ermish", "tm-sanaullah"],
     4,
+    "Responsible for organizing student-led workshops and learning sessions while conducting technical research and developing practical solutions.",
+    [
+      "Organizes student-led workshops and learning sessions.",
+      "Conducts technical research and develops solutions.",
+    ],
   ),
   department(
     "dep-media",
@@ -70,6 +91,11 @@ export const departments: Department[] = [
     "lilac",
     ["tm-abiha-jibran", "tm-faiq"],
     5,
+    "Responsible for content creation and managing the society's social media platforms.",
+    [
+      "Records and edits reels and visual content.",
+      "Creates graphics and manages social media.",
+    ],
   ),
   department(
     "dep-pr",
@@ -79,6 +105,11 @@ export const departments: Department[] = [
     "blue",
     ["tm-ishmal-najeeb", "tm-rizwan-saeed"],
     6,
+    "Responsible for managing external communications, promoting society events, and building partnerships to enhance the society's outreach and visibility.",
+    [
+      "Promotes society events and initiatives.",
+      "Manages public relations and outreach.",
+    ],
   ),
   department(
     "dep-finance",
@@ -88,6 +119,11 @@ export const departments: Department[] = [
     "yellow",
     ["tm-nofal-zaman"],
     7,
+    "Responsible for managing the society's budget and coordinating sponsorships.",
+    [
+      "Manages budgets and tracks expenses.",
+      "Secures and coordinates sponsorships.",
+    ],
   ),
   department(
     "dep-events",
@@ -97,6 +133,11 @@ export const departments: Department[] = [
     "sky",
     ["tm-usman-azhar"],
     8,
+    "Develops event themes, brainstorms ideas, and plans decor and overall event concepts.",
+    [
+      "Brainstorms event ideas and themes.",
+      "Plans event concepts and decor.",
+    ],
   ),
   department(
     "dep-logistics",
@@ -106,5 +147,10 @@ export const departments: Department[] = [
     "mint",
     ["tm-saliha-noor"],
     9,
+    "Manages event supplies, decor materials, and equipment to ensure all necessary resources are available and organized.",
+    [
+      "Arranges event supplies, equipment, and materials.",
+      "Tracks resources and manages décor items.",
+    ],
   ),
 ];

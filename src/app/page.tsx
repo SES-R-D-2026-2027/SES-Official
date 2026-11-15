@@ -16,10 +16,8 @@ import { getSiteStats } from "@/lib/data/stats";
 import { getMembersByIds } from "@/lib/data/team";
 import { buildMetadata } from "@/lib/seo";
 
-export const metadata = buildMetadata({
-  description:
-    "SES is where FAST-NUCES students come together to build projects, learn new tech, make events happen and occasionally debate tabs vs. spaces.",
-});
+// Uses the society's short description from src/config/site.ts.
+export const metadata = buildMetadata();
 
 export default async function HomePage() {
   const [departments, projects, upcoming, past, announcements, stats] = await Promise.all([
