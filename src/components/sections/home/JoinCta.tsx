@@ -10,7 +10,9 @@ import { siteConfig } from "@/config/site";
 import { homeCopy } from "@/content/home";
 
 const copy = homeCopy.join;
-const discordUrl = siteConfig.socials.find((s) => s.icon === "discord")?.href;
+const discordUrl = (siteConfig.socials as readonly { icon: string; href: string }[]).find(
+  (s) => s.icon === "discord",
+)?.href;
 
 /** Big coral "Come build with us." block. Heading is ink, not white (contrast fix, DESIGN.md §6.8). */
 export function JoinCta() {

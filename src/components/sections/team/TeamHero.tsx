@@ -19,12 +19,13 @@ export interface TeamHeroProps {
   departments: Department[];
 }
 
-const badgeColors: TileColor[] = ["yellow", "mint", "lilac"];
+const badgeColors: TileColor[] = ["yellow", "mint", "lilac", "sky"];
 // Scattered resting spots for the officer badges (desktop); they stack on mobile.
 const badgePlacement = [
   "lg:max-w-xs lg:self-start",
   "lg:max-w-xs lg:self-end",
   "lg:max-w-xs lg:self-center",
+  "lg:max-w-xs lg:self-start",
 ];
 
 /**

@@ -24,7 +24,20 @@ export const events: Event[] = [
     venue: "FAST NUCES Islamabad",
     isOnline: false,
     badge: "Workshop",
-    gallery: [],
+    coverImage: {
+      url: "/images/events/soventure/Soventure_pf_workshop.jpg",
+      alt: "Students attending an SES technical workshop session",
+    },
+    gallery: [
+      {
+        url: "/images/events/soventure/Soventure_Cursor_Session.png",
+        alt: "Hands-on Cursor AI coding session",
+      },
+      {
+        url: "/images/events/canva-workshop/audience.jpg",
+        alt: "Students participating in a campus workshop",
+      },
+    ],
     isFeatured: false,
     color: "lilac",
   },
@@ -41,7 +54,20 @@ export const events: Event[] = [
     startsAt: "2026-10-20T07:00:00.000Z",
     isOnline: false,
     badge: "Workshop",
-    gallery: [],
+    coverImage: {
+      url: "/images/events/canva-workshop/cover.jpg",
+      alt: "Canva x SES Portfolio & Personal Branding Workshop banner",
+    },
+    gallery: [
+      {
+        url: "/images/events/canva-workshop/speaker.jpg",
+        alt: "Speaker session at Canva portfolio and personal branding workshop",
+      },
+      {
+        url: "/images/events/canva-workshop/audience.jpg",
+        alt: "Attendees engaged in the Canva portfolio session",
+      },
+    ],
     isFeatured: false,
     color: "sky",
   },
@@ -58,7 +84,24 @@ export const events: Event[] = [
     venue: "FAST NUCES Islamabad",
     isOnline: false,
     badge: "Welcome",
-    gallery: [],
+    coverImage: {
+      url: "/images/events/orientation/Orientation_2025.JPG",
+      alt: "SES Welcome and Orientation event at FAST NUCES",
+    },
+    gallery: [
+      {
+        url: "/images/events/orientation/orientation_25batch.jpg",
+        alt: "Batch 2025 students gathering at the SES Orientation",
+      },
+      {
+        url: "/images/events/orientation/Orientation_2025(1).JPG",
+        alt: "Orientation activities and senior-junior networking",
+      },
+      {
+        url: "/images/events/orientation/Orientation_2025(2).JPG",
+        alt: "Orientation fun games and team building moments",
+      },
+    ],
     isFeatured: false,
     color: "mint",
   },
@@ -76,7 +119,32 @@ export const events: Event[] = [
     venue: "FAST NUCES Islamabad",
     isOnline: false,
     badge: "Flagship event",
-    gallery: [],
+    coverImage: {
+      url: "/images/events/soventure/Soventure_Banners.jpg",
+      alt: "Soventure flagship event official banner and entrance",
+    },
+    gallery: [
+      {
+        url: "/images/events/soventure/soventure_bonfire.jpg",
+        alt: "Evening bonfire celebration at Soventure",
+      },
+      {
+        url: "/images/events/soventure/Soventure_chess_tournament.JPG",
+        alt: "Competitors in the Soventure chess tournament",
+      },
+      {
+        url: "/images/events/soventure/Soventure_Cursor_Session.png",
+        alt: "Soventure Cursor AI developer workshop",
+      },
+      {
+        url: "/images/events/soventure/Soventure_pf_workshop.jpg",
+        alt: "Programming fundamentals workshop in action at Soventure",
+      },
+      {
+        url: "/images/events/soventure/soventure_stalls.jpg",
+        alt: "Recreational stalls and student booths at Soventure",
+      },
+    ],
     isFeatured: true,
     color: "yellow",
   },
@@ -93,7 +161,20 @@ export const events: Event[] = [
     venue: "Auditorium, FAST NUCES Islamabad",
     isOnline: false,
     badge: "Industry collab",
-    gallery: [],
+    coverImage: {
+      url: "/images/events/arbisoft/Arbisoft_speaker_session.JPG",
+      alt: "Arbisoft guest speaker addressing students at the mock interview session",
+    },
+    gallery: [
+      {
+        url: "/images/events/arbisoft/arbisoft_SES_collab.JPG",
+        alt: "SES executive team presenting shield to Arbisoft experts",
+      },
+      {
+        url: "/images/events/arbisoft/arbisoft_session.JPG",
+        alt: "Students attending the live mock interview session in the auditorium",
+      },
+    ],
     isFeatured: false,
     color: "coral",
   },

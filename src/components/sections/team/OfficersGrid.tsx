@@ -12,7 +12,7 @@ export interface OfficersGridProps {
 
 const colors: TileColor[] = ["yellow", "mint", "lilac", "sky"];
 
-/** The society's officers as large cards (1 column on mobile, 3 on desktop). */
+/** The society's officers as large cards (1 column on mobile, 2 on tablet, 4 on desktop). */
 export function OfficersGrid({ officers }: OfficersGridProps) {
   if (officers.length === 0) return null;
   return (
@@ -25,13 +25,13 @@ export function OfficersGrid({ officers }: OfficersGridProps) {
           tags={[{ label: "Executive council", color: "coral" }]}
           note="the buck stops here"
         />
-        <Stagger as="ul" className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <Stagger as="ul" className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {officers.map((officer, i) => (
             <StaggerItem as="li" key={officer.id} className="flex">
               <Card
                 as="article"
                 color={colors[i % colors.length]}
-                tilt={i === 1 ? "right" : "none"}
+                tilt={i % 2 === 1 ? "right" : "none"}
                 shadow="lg"
                 className="flex w-full flex-col items-center gap-4 text-center"
               >
