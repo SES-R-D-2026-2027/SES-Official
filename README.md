@@ -60,6 +60,7 @@ src/
 │   ├── events/             # Events index and detail pages
 │   ├── projects/           # Project catalogue
 │   ├── research/           # Research and Development overview
+│   ├── join/               # Front-end application form preview
 │   ├── resources/          # Sponsors, partners and published metrics
 │   └── team/               # Society leadership and department directory
 ├── components/
@@ -86,7 +87,8 @@ public/
 - **Research and Development:** `src/app/research/page.tsx` for the overview and `src/content/mock/departments.ts` for team responsibilities. Keep proposed exploration areas distinct from completed work.
 - **Events:** `src/content/mock/events.ts`.
 - **Mentors:** `src/content/mock/mentors.ts`. Publish only verified mentor names, roles, biographies and contact links.
-- **Homepage copy:** `src/content/home.ts`.
+- **Homepage copy:** `src/content/home.ts`. The featured card deck auto-advances. A simple click does not reset its timer. Moving the featured card reveals the next card, while placed cards keep their positions. When all six cards are placed, their progress bars run in sync before the deck resets.
+- **Join form:** `src/app/join/page.tsx` and `src/components/sections/join/JoinApplicationForm.tsx`. The current form is a front-end preview only. It does not submit or store entries until a Google Forms or backend integration is added.
 - **Navigation, social links and contact details:** `src/config/site.ts`.
 - **Brand assets:** `public/brand/`. The navbar uses one theme-swapped logo element. The favicon is a raster PNG with a contrasting background and switches with the selected theme.
 

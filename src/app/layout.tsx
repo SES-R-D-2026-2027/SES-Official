@@ -24,7 +24,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           rel="icon"
           type="image/png"
           sizes="512x512"
-          href="/brand/favicon-light.png?v=4"
+          href="/brand/favicon-light.png?v=5"
         />
         <Script id="ses-theme-init" strategy="beforeInteractive">
           {`try {
@@ -32,7 +32,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             const theme = saved === "dark" || saved === "neo" ? saved : document.documentElement.dataset.theme;
             if (theme === "dark" || theme === "neo") document.documentElement.dataset.theme = theme;
             const icon = document.getElementById("ses-theme-favicon");
-            if (icon) icon.setAttribute("href", theme === "dark" ? "/brand/favicon-dark.png?v=4" : "/brand/favicon-light.png?v=4");
+            if (icon) icon.setAttribute("href", theme === "dark" ? "/brand/favicon-dark.png?v=5" : "/brand/favicon-light.png?v=5");
           } catch {}`}
         </Script>
       </head>

@@ -160,25 +160,25 @@ export function PlayfulPhysicsField({
 
         for (const ball of ballsRef.current) {
           if ((active?.kind === "ball" && active.id === ball.id) || !ball.awake) continue;
-          ball.vy += 0.095;
+          ball.vy += 0.145;
           ball.x += ball.vx;
           ball.y += ball.vy;
-          ball.vx *= 0.9996;
-          if (ball.x < 0) { ball.x = 0; ball.vx = Math.abs(ball.vx) * 0.96; }
-          if (ball.x + ball.radius * 2 > boardWidth) { ball.x = boardWidth - ball.radius * 2; ball.vx = -Math.abs(ball.vx) * 0.96; }
-          if (ball.y < 0) { ball.y = 0; ball.vy = Math.abs(ball.vy) * 0.94; }
+          ball.vx *= 0.9992;
+          if (ball.x < 0) { ball.x = 0; ball.vx = Math.abs(ball.vx) * 0.985; }
+          if (ball.x + ball.radius * 2 > boardWidth) { ball.x = boardWidth - ball.radius * 2; ball.vx = -Math.abs(ball.vx) * 0.985; }
+          if (ball.y < 0) { ball.y = 0; ball.vy = Math.abs(ball.vy) * 0.97; }
           if (ball.y + ball.radius * 2 > boardHeight) {
             ball.y = boardHeight - ball.radius * 2;
-            ball.vy = Math.abs(ball.vy) > 0.35 ? -Math.abs(ball.vy) * 0.93 : 0;
+            ball.vy = Math.abs(ball.vy) > 0.35 ? -Math.abs(ball.vy) * 0.955 : 0;
             ball.vx *= 0.997;
-            if (Math.abs(ball.vx) < 0.11 && Math.abs(ball.vy) < 0.11) {
+            if (Math.abs(ball.vx) < 0.07 && Math.abs(ball.vy) < 0.07) {
               ball.vx = 0;
               ball.vy = 0;
               ball.awake = false;
             }
           }
-          if (Math.abs(ball.vx) < 0.045) ball.vx = 0;
-          if (Math.abs(ball.vy) < 0.1 && ball.y + ball.radius * 2 >= boardHeight - 1) ball.vy = 0;
+          if (Math.abs(ball.vx) < 0.035) ball.vx = 0;
+          if (Math.abs(ball.vy) < 0.07 && ball.y + ball.radius * 2 >= boardHeight - 1) ball.vy = 0;
         }
 
         for (const card of cardsRef.current) {
@@ -228,11 +228,11 @@ export function PlayfulPhysicsField({
 
             const relativeNormalSpeed = (ball.vx - card.vx) * nx + (ball.vy - card.vy) * ny;
             if (relativeNormalSpeed < 0) {
-              const impulse = -relativeNormalSpeed * 1.3;
+              const impulse = -relativeNormalSpeed * 1.58;
               ball.vx += impulse * nx;
               ball.vy += impulse * ny;
-              card.vx -= impulse * 0.72 * nx;
-              card.vy -= impulse * 0.72 * ny;
+              card.vx -= impulse * 0.9 * nx;
+              card.vy -= impulse * 0.9 * ny;
               if (Math.abs(relativeNormalSpeed) > 0.2) {
                 ball.awake = true;
                 card.awake = true;
@@ -262,8 +262,8 @@ export function PlayfulPhysicsField({
             b.x += nx * overlap; b.y += ny * overlap;
             const relative = (b.vx - a.vx) * nx + (b.vy - a.vy) * ny;
             if (relative < 0) {
-              a.vx += relative * nx * 0.82; a.vy += relative * ny * 0.82;
-              b.vx -= relative * nx * 0.82; b.vy -= relative * ny * 0.82;
+              a.vx += relative * nx * 0.94; a.vy += relative * ny * 0.94;
+              b.vx -= relative * nx * 0.94; b.vy -= relative * ny * 0.94;
             }
           }
         }
@@ -369,8 +369,8 @@ export function PlayfulPhysicsField({
       if (body) {
         if (active.kind === "ball") {
           const ball = body as BallBody;
-          ball.vx = active.moved ? clamp(active.lastDeltaX * 1.25, -26, 26) : (ball.id % 2 ? 6.8 : -6.8);
-          ball.vy = active.moved ? clamp(active.lastDeltaY * 1.25, -26, 26) : -14;
+          ball.vx = active.moved ? clamp(active.lastDeltaX * 1.65, -34, 34) : (ball.id % 2 ? 9.2 : -9.2);
+          ball.vy = active.moved ? clamp(active.lastDeltaY * 1.65, -34, 34) : -17.5;
           ball.awake = true;
         } else {
           const card = body as CardBody;
@@ -422,8 +422,8 @@ export function PlayfulPhysicsField({
     (board as HTMLDivElement & { __sesLaunchBall?: (id: number) => void }).__sesLaunchBall = (id) => {
       const ball = ballsRef.current.find((body) => body.id === id);
       if (!ball) return;
-      ball.vx += id % 2 ? 6.8 : -6.8;
-      ball.vy = -14;
+      ball.vx += id % 2 ? 9.2 : -9.2;
+      ball.vy = -17.5;
       ball.awake = true;
       startSimulation();
     };
@@ -501,10 +501,10 @@ export function PlayfulPhysicsField({
             onKeyDown={(event) => {
               if (event.key === "Enter" || event.key === " ") { event.preventDefault(); launchBall(index); }
             }}
-            className="ses-physics-orb absolute z-30 flex size-12 items-center justify-center rounded-full border-2 border-white/70 shadow-[0_5px_8px_rgba(8,22,46,0.2),inset_-3px_-4px_7px_rgba(4,21,49,0.2),inset_3px_3px_6px_rgba(255,255,255,0.58)] outline-offset-4 focus-visible:outline-2 focus-visible:outline-link sm:size-13"
+            className="ses-physics-orb absolute z-30 flex size-14 items-center justify-center rounded-full border-2 border-white/75 shadow-[0_8px_14px_rgba(8,22,46,0.28),inset_-4px_-5px_9px_rgba(4,21,49,0.24),inset_4px_4px_8px_rgba(255,255,255,0.62)] outline-offset-4 focus-visible:outline-2 focus-visible:outline-link sm:size-16"
             style={{ left: 0, top: 0 }}
           >
-            <Image src="/brand/ses-ball-mark.png" alt="" aria-hidden="true" width={34} height={34} draggable={false} className="relative z-10 size-7 object-contain" />
+            <Image src="/brand/ses-ball-mark.png" alt="" aria-hidden="true" width={42} height={42} draggable={false} className="relative z-10 size-9 object-contain" />
           </button>
         ))}
       </div>
