@@ -231,3 +231,17 @@
 @media (prefers-reduced-motion: reduce) {
   .ses-physics-orb { transition: none; }
 }
+
+/* The featured homepage card continuously sweeps its loading bar until dragged. */
+@keyframes ses-card-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.ses-card-progress-loop {
+  animation-name: ses-card-progress;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ses-card-progress-loop { animation: none; transform: scaleX(1); }
+}

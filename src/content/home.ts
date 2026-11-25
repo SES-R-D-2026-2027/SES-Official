@@ -29,6 +29,9 @@ export const homeCopy = {
       { title: "Make a thing", note: "ideas welcome · skills optional", color: "yellow" },
       { title: "Projects in progress", note: "always room for one more", color: "mint" },
       { title: "Game night energy", note: "coding not required", color: "coral" },
+      { title: "Build together", note: "good teams make it happen", color: "lilac" },
+      { title: "Research and explore", note: "curiosity is a great start", color: "sky" },
+      { title: "Meet your people", note: "find your circle at SES", color: "blue" },
     ] as { title: string; note: string; color: TileColor }[],
   },
   labLife: {

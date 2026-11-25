@@ -1,4 +1,4 @@
-import { PlayfulPhysicsField } from "@/components/motion/PlayfulPhysicsField";
+import { SequentialCardDeck } from "@/components/motion/SequentialCardDeck";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Underline } from "@/components/ui/Doodle";
@@ -62,14 +62,13 @@ export function Hero({ departments, activeProjects }: HeroProps) {
             <div className="relative -mt-2 flex min-w-0 flex-col items-center justify-start gap-3 px-2 py-0 sm:px-5 lg:-mt-5">
               <DepartmentMap departments={departments} centerLabel="SES core" />
               <HandNote decorative={false} className="w-full justify-center text-center text-2xl font-semibold sm:text-3xl">
-                Drag these cards around!
+                Drag a card anywhere to reveal the next!
               </HandNote>
-              <PlayfulPhysicsField
-                label="Three draggable SES idea cards"
-                heightClassName="h-36 sm:h-36"
-                showOrbs={false}
+              <SequentialCardDeck
+                className="w-full"
+                intervalMs={9000}
                 cards={copy.floats.map((float, index) => ({
-                  id: `home-v2-${index}`,
+                  id: `home-deck-v1-${index}`,
                   title: float.title,
                   note: float.note,
                   color: float.color,

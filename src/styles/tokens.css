@@ -20,21 +20,21 @@
   --palette-sky: #8fd3ff;
 
   /* Dark-theme palette. Keep literal color values centralized here as well. */
-  --palette-dark-bg: #101726;
-  --palette-dark-surface: #1b263b;
-  --palette-dark-ink: #f3f5fa;
-  --palette-dark-muted: #b8c2d6;
-  --palette-dark-primary: #7799f5;
+  --palette-dark-bg: #07162b;
+  --palette-dark-surface: #102746;
+  --palette-dark-ink: #f3f7ff;
+  --palette-dark-muted: #c1d0e5;
+  --palette-dark-primary: #83aaff;
   --palette-dark-accent: #f7d64b;
-  --palette-dark-highlight: #2c3a56;
-  --palette-dark-link: #a9bdff;
-  --palette-dark-focus: #b5c8ff;
-  --palette-dark-yellow: #9c7812;
-  --palette-dark-mint: #286b4a;
-  --palette-dark-lilac: #6551a0;
-  --palette-dark-coral: #a64259;
-  --palette-dark-sky: #2d6489;
-  --palette-dark-blue: #293d63;
+  --palette-dark-highlight: #19395f;
+  --palette-dark-link: #b7ceff;
+  --palette-dark-focus: #c8dcff;
+  --palette-dark-yellow: #95751a;
+  --palette-dark-mint: #1d674b;
+  --palette-dark-lilac: #584b91;
+  --palette-dark-coral: #903d54;
+  --palette-dark-sky: #245f8c;
+  --palette-dark-blue: #244a78;
 }
 
 /* ───────── Layer 2 · SEMANTIC (theme: neo) ───────── */
