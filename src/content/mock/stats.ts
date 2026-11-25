@@ -1,36 +1,31 @@
 import type { SiteStats } from "@/types/content";
 
-// TODO(content): illustrative numbers for the homepage tiles (DESIGN.md / see.png).
-// Campus Pulse marked equivalent figures as demo stats — replace with real ones.
-
+// Snapshot derived from the current local content records (2026-11-25).
+// Update these values when the underlying directory/project records change.
 export const stats: SiteStats = {
   items: [
     {
       value: 9,
-      label: "Departments",
-      description: "From development and media to events, finance and logistics.",
-      note: "all active!",
+      label: "Functional teams",
+      description: "Nine teams support society planning, delivery and communication.",
       color: "yellow",
     },
     {
-      value: 40,
-      suffix: "+",
-      label: "Events survived",
-      description: "Workshops, meetups, game nights and whatever we organize next.",
+      value: 17,
+      label: "People listed",
+      description: "Published leadership, advisor, lead and co-lead records; not total membership.",
       color: "mint",
     },
     {
-      value: 25,
-      label: "Projects shipped",
-      description: "Small experiments, side quests and a few that got real.",
+      value: 1,
+      label: "Listed project",
+      description: "The current public project catalogue contains one project.",
       color: "lilac",
     },
     {
-      value: 300,
-      suffix: "+",
-      label: "Students reached",
-      description: "Builders, organizers and professional deadline negotiators.",
-      note: "join us!",
+      value: 0,
+      label: "Completed projects",
+      description: "No project is currently marked shipped or maintained.",
       color: "coral",
     },
   ],

@@ -18,6 +18,23 @@
   --palette-lilac: #b9a6ff;
   --palette-coral: #ff7a90;
   --palette-sky: #8fd3ff;
+
+  /* Dark-theme palette. Keep literal color values centralized here as well. */
+  --palette-dark-bg: #101726;
+  --palette-dark-surface: #1b263b;
+  --palette-dark-ink: #f3f5fa;
+  --palette-dark-muted: #b8c2d6;
+  --palette-dark-primary: #7799f5;
+  --palette-dark-accent: #f7d64b;
+  --palette-dark-highlight: #2c3a56;
+  --palette-dark-link: #a9bdff;
+  --palette-dark-focus: #b5c8ff;
+  --palette-dark-yellow: #9c7812;
+  --palette-dark-mint: #286b4a;
+  --palette-dark-lilac: #6551a0;
+  --palette-dark-coral: #a64259;
+  --palette-dark-sky: #2d6489;
+  --palette-dark-blue: #293d63;
 }
 
 /* ───────── Layer 2 · SEMANTIC (theme: neo) ───────── */
@@ -58,6 +75,33 @@
   --ses-bento-row: minmax(10rem, auto); /* bento row height from md up (1x2 / 2x2 tiles span 2) */
 }
 
+/* ───────── Layer 2 · SEMANTIC (theme: dark) ───────── */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --ses-bg: var(--palette-dark-bg);
+  --ses-surface: var(--palette-dark-surface);
+  --ses-ink: var(--palette-dark-ink);
+  --ses-muted: var(--palette-dark-muted);
+  --ses-primary: var(--palette-dark-primary);
+  --ses-on-primary: var(--palette-dark-bg);
+  --ses-accent: var(--palette-dark-accent);
+  --ses-on-accent: var(--palette-dark-bg);
+  --ses-highlight: var(--palette-dark-highlight);
+  --ses-link: var(--palette-dark-link);
+  --ses-focus: var(--palette-dark-focus);
+
+  --ses-tile-yellow: var(--palette-dark-yellow);
+  --ses-tile-mint: var(--palette-dark-mint);
+  --ses-tile-lilac: var(--palette-dark-lilac);
+  --ses-tile-coral: var(--palette-dark-coral);
+  --ses-tile-sky: var(--palette-dark-sky);
+  --ses-tile-blue: var(--palette-dark-blue);
+  --ses-tile-paper: var(--palette-dark-surface);
+
+  --ses-dot: color-mix(in oklab, var(--ses-ink) 15%, transparent);
+}
+
+
 /* Example of a future theme — only remap Layer 2:
 [data-theme="minimal"] { --ses-border-width: 1px; --ses-shadow-offset: 0px; --ses-tilt: 0deg; … } */
 
@@ -76,6 +120,13 @@
 
 @theme inline {
   --color-white: var(--palette-white);
+  --color-yellow: var(--ses-tile-yellow);
+  --color-pink: var(--ses-tile-coral);
+  --color-mint: var(--ses-tile-mint);
+  --color-purple: var(--ses-tile-lilac);
+  --color-sky: var(--ses-tile-sky);
+  --color-paper: var(--ses-bg);
+  --color-card: var(--ses-surface);
   --color-bg: var(--ses-bg);
   --color-surface: var(--ses-surface);
   --color-ink: var(--ses-ink);

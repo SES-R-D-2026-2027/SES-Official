@@ -30,7 +30,7 @@ const badgePlacement = [
 
 /**
  * Team page hero. The heading is static (LCP); the officer badges pop in, bob gently and can be
- * dragged around (they spring back). Department chips jump to that department's card below.
+ * dragged around. Department chips open the corresponding team detail page.
  */
 export function TeamHero({ term, officers, departments }: TeamHeroProps) {
   const draggable = isEnabled("draggableStickers");
@@ -55,19 +55,19 @@ export function TeamHero({ term, officers, departments }: TeamHeroProps) {
               </h1>
 
               <Highlight className="max-w-xl">
-                {officers.length} officers and {departments.length} departments of students who plan
+                {officers.length} officers and {departments.length} teams of students who plan
                 the events, build the projects and keep the society running.
               </Highlight>
 
-              <nav aria-label="Jump to a department" className="flex flex-col gap-3">
+              <nav aria-label="Visit a department page" className="flex flex-col gap-3">
                 <HandNote arrow="down" className="pl-1">
-                  find your team!
+                  choose a team
                 </HandNote>
                 <ul className="flex flex-wrap gap-2">
                   {departments.map((department) => (
                     <li key={department.id}>
                       <a
-                        href={`#${department.slug}`}
+                        href={`/departments/${department.slug}`}
                         className={cn(
                           "inline-flex press items-center rounded-brutal-sm px-2.5 py-1 text-sm font-semibold shadow-brutal focus-ring border-brutal",
                           tileColor({ color: department.color ?? "paper" }),
@@ -93,7 +93,12 @@ export function TeamHero({ term, officers, departments }: TeamHeroProps) {
                       badgePlacement[i % badgePlacement.length],
                     )}
                   >
-                    <Draggable disabled={!draggable} className="block">
+                    <Draggable
+                      disabled={!draggable}
+                      className="block"
+                      persistKey={`team-officer-${officer.id}`}
+                      dragBounds={{ top: -112, right: 112, bottom: 112, left: -112 }}
+                    >
                       <Float delay={i * 0.6}>
                         <div
                           className={cn(

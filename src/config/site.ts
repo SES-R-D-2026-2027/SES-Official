@@ -1,7 +1,7 @@
 import type { TileColor } from "@/types/content";
 
 // Site-wide settings: name, nav, footer, socials, contact.
-// TODO(content): GitHub URL still needs confirming; Discord, logo and share image are not provided yet.
+// TODO(content): GitHub URL still needs confirming; share image is not provided yet.
 
 export interface NavLink {
   label: string;
@@ -42,6 +42,7 @@ export const siteConfig = {
     { label: "Events", href: "/events" },
     { label: "Projects", href: "/projects" },
     { label: "Mentors", href: "/mentors" },
+    { label: "Team", href: "/team" },
     { label: "Research", href: "/research" },
     { label: "Resources", href: "/resources" },
   ] satisfies NavLink[],

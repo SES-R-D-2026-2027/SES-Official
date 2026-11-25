@@ -1,4 +1,4 @@
-import { Briefcase, Camera, Code, MessageCircle, type LucideIcon } from "lucide-react";
+import { Code, MessageCircle, type LucideIcon } from "lucide-react";
 import { cacheLife } from "next/cache";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
@@ -11,12 +11,31 @@ import { cn } from "@/lib/utils";
 import { Logo } from "./Logo";
 
 // lucide-react no longer ships brand logos, so socials use generic icons.
-const socialIcons: Record<SocialLink["icon"], LucideIcon> = {
+const socialIcons: Partial<Record<SocialLink["icon"], LucideIcon>> = {
   github: Code,
   discord: MessageCircle,
-  instagram: Camera,
-  linkedin: Briefcase,
 };
+
+function SocialMark({ brand }: { brand: SocialLink["icon"] }) {
+  if (brand === "instagram") {
+    return (
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="size-5">
+        <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="2" />
+        <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2" />
+        <circle cx="17.5" cy="6.5" r="1.25" fill="currentColor" />
+      </svg>
+    );
+  }
+  if (brand === "linkedin") {
+    return (
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" className="size-5">
+        <path d="M5.2 3.5a2.2 2.2 0 1 0 0 4.4 2.2 2.2 0 0 0 0-4.4ZM3.4 9.5H7v11H3.4v-11Zm5.8 0h3.4V11h.05c.48-.9 1.65-1.85 3.4-1.85 3.64 0 4.32 2.4 4.32 5.52v5.83h-3.55v-5.17c0-1.23-.02-2.82-1.72-2.82-1.73 0-2 1.35-2 2.73v5.26H9.2v-11Z" />
+      </svg>
+    );
+  }
+  const Icon = socialIcons[brand];
+  return Icon ? <Icon aria-hidden="true" className="size-5" /> : null;
+}
 
 const socialColors: TileColor[] = ["yellow", "mint", "lilac", "coral"];
 
@@ -39,7 +58,6 @@ export function Footer() {
           <p className="max-w-sm text-sm text-muted">{siteConfig.description}</p>
           <ul className="flex gap-3">
             {siteConfig.socials.map((social, index) => {
-              const Icon = socialIcons[social.icon];
               return (
                 <li key={social.label}>
                   <a
@@ -50,7 +68,7 @@ export function Footer() {
                       tileColor({ color: socialColors[index % socialColors.length] }),
                     )}
                   >
-                    <Icon aria-hidden="true" className="size-5" />
+                    <SocialMark brand={social.icon} />
                     <span className="sr-only">{social.label} (opens in new tab)</span>
                   </a>
                 </li>

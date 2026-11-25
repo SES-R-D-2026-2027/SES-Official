@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu, X } from "lucide-react";
+import { CalendarDays, FolderKanban, GraduationCap, Info, LibraryBig, Menu, Microscope, Users, X } from "lucide-react";
 import { AnimatePresence, m } from "motion/react";
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
@@ -10,6 +10,17 @@ import { siteConfig } from "@/config/site";
 import { overlay, popIn, staggerParent } from "@/lib/motion/presets";
 import { cn } from "@/lib/utils";
 import { Logo } from "./Logo";
+import { ThemeToggle } from "./ThemeToggle";
+
+const navIcons = {
+  "/about": Info,
+  "/events": CalendarDays,
+  "/projects": FolderKanban,
+  "/mentors": GraduationCap,
+  "/team": Users,
+  "/research": Microscope,
+  "/resources": LibraryBig,
+} as const;
 
 const linkColors = tileColors.filter((color) => color !== "paper");
 
@@ -66,16 +77,19 @@ export function MobileMenu() {
               exit="exit"
               className="flex min-h-full flex-col bg-bg dot-grid"
             >
-              <div className="flex h-16 items-center justify-between bg-bg px-4 border-b-brutal md:px-6">
+              <div className="flex h-16 items-center justify-between border-b-brutal bg-bg px-4 md:px-6">
                 <Logo onClick={close} />
-                <button
-                  type="button"
-                  onClick={close}
-                  className="inline-flex size-10 press items-center justify-center brutal bg-surface text-ink focus-ring"
-                >
-                  <X aria-hidden="true" className="size-5" />
-                  <span className="sr-only">Close menu</span>
-                </button>
+                <div className="flex items-center gap-2">
+                  <ThemeToggle />
+                  <button
+                    type="button"
+                    onClick={close}
+                    className="inline-flex size-10 press items-center justify-center brutal bg-surface text-ink focus-ring"
+                  >
+                    <X aria-hidden="true" className="size-5" />
+                    <span className="sr-only">Close menu</span>
+                  </button>
+                </div>
               </div>
 
               <nav
@@ -88,20 +102,24 @@ export function MobileMenu() {
                   animate="show"
                   className="flex flex-col gap-4"
                 >
-                  {siteConfig.nav.map((link, index) => (
-                    <m.li key={link.href} variants={popIn}>
-                      <Link
-                        href={link.href}
-                        onClick={close}
-                        className={cn(
-                          "inline-flex press items-center gap-3 brutal px-4 py-2 font-display text-h2 font-bold no-underline focus-ring",
-                          tileColor({ color: linkColors[index % linkColors.length] }),
-                        )}
-                      >
-                        {link.label}
-                      </Link>
-                    </m.li>
-                  ))}
+                  {siteConfig.nav.map((link, index) => {
+                    const Icon = navIcons[link.href as keyof typeof navIcons];
+                    return (
+                      <m.li key={link.href} variants={popIn}>
+                        <Link
+                          href={link.href}
+                          onClick={close}
+                          className={cn(
+                            "inline-flex press items-center gap-3 brutal px-4 py-2 font-display text-h2 font-bold no-underline focus-ring",
+                            tileColor({ color: linkColors[index % linkColors.length] }),
+                          )}
+                        >
+                          {Icon && <Icon aria-hidden="true" className="size-5" />}
+                          {link.label}
+                        </Link>
+                      </m.li>
+                    );
+                  })}
                 </m.ul>
                 <div>
                   <Button href={siteConfig.cta.href} arrow size="lg" onClick={close}>

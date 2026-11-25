@@ -84,21 +84,19 @@ export function DepartmentMap({ departments, centerLabel, className }: Departmen
                 className="absolute w-max max-w-24 -translate-1/2 md:max-w-28"
                 style={{ left: `${points[i].x}%`, top: `${points[i].y}%` }}
               >
-                <button
-                  type="button"
-                  aria-pressed={isActive}
+                <Link
+                  href={`/departments/${department.slug}`}
                   aria-controls={panelId}
                   onMouseEnter={() => setActiveId(department.id)}
                   onFocus={() => setActiveId(department.id)}
-                  onClick={() => setActiveId(department.id)}
                   className={cn(
-                    "w-full press brutal rounded-brutal-sm px-1 py-1.5 text-center text-xs leading-tight font-semibold focus-ring sm:px-2",
+                    "block w-full press brutal rounded-brutal-sm px-1 py-1.5 text-center text-xs leading-tight font-semibold focus-ring sm:px-2",
                     tileColor({ color: department.color ?? "paper" }),
                     isActive && "underline decoration-2 underline-offset-2 shadow-brutal-lg",
                   )}
                 >
                   {department.name}
-                </button>
+                </Link>
               </li>
             );
           })}
@@ -118,7 +116,7 @@ export function DepartmentMap({ departments, centerLabel, className }: Departmen
               href={`/departments/${active.slug}`}
               className="inline-flex items-center gap-1 self-start rounded-brutal-sm text-sm font-semibold focus-ring"
             >
-              Meet the team
+              Open team page
               <ArrowRight aria-hidden="true" className="size-4" />
               <span className="sr-only">: {active.name}</span>
             </Link>

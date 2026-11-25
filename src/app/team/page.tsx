@@ -29,7 +29,7 @@ export default async function TeamPage() {
       <TeamStats
         items={[
           { value: officers.length, label: "Officers", color: "yellow" },
-          { value: departments.length, label: "Departments", color: "mint" },
+          { value: departments.length, label: "Teams", color: "mint" },
           { value: leads, label: "Leads & co-leads", color: "lilac" },
           { value: 100, suffix: "%", label: "Student-run", color: "coral", note: "always!" },
         ]}

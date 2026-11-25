@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { Avatar } from "@/components/ui/Avatar";
 import { Card } from "@/components/ui/Card";
@@ -10,8 +12,7 @@ export interface DepartmentTeamsProps {
 }
 
 /**
- * One card per department with its lead and co-lead. Each card carries the department slug as
- * its id, so the hero's department chips can jump straight to it.
+ * One linked card per department, previewing the current leads and co-leads.
  */
 export function DepartmentTeams({ departments }: DepartmentTeamsProps) {
   if (departments.length === 0) return null;
@@ -20,20 +21,24 @@ export function DepartmentTeams({ departments }: DepartmentTeamsProps) {
       <div className="flex flex-col gap-8">
         <SectionHeading
           id="departments-title"
-          title="Departments"
-          description="Every department has a lead, and some have a co-lead too. Find the people to talk to about anything SES."
-          tags={[{ label: `${departments.length} departments`, color: "mint" }]}
+          title="Teams"
+          description="Explore all nine teams, meet their leads and co-leads, and open each team’s dedicated page."
+          tags={[{ label: `${departments.length} teams`, color: "mint" }]}
           note="we don't bite!"
         />
         <Stagger as="ul" className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {departments.map(({ department, members }) => (
             <StaggerItem as="li" key={department.id} className="flex">
+              <Link
+                href={`/departments/${department.slug}`}
+                aria-labelledby={`${department.slug}-title`}
+                className="group flex w-full rounded-brutal focus-ring"
+              >
               <Card
                 as="article"
                 id={department.slug}
-                aria-labelledby={`${department.slug}-title`}
                 color={department.color}
-                className="flex w-full scroll-mt-24 flex-col gap-4"
+                className="flex w-full flex-col gap-4 transition-transform group-hover:-translate-y-1 group-focus-visible:-translate-y-1"
               >
                 <div className="flex flex-col gap-1">
                   <h3 id={`${department.slug}-title`} className="font-display text-xl font-bold">
@@ -66,7 +71,11 @@ export function DepartmentTeams({ departments }: DepartmentTeamsProps) {
                     </li>
                   ))}
                 </ul>
+                <span className="mt-auto inline-flex items-center gap-2 pt-1 text-sm font-bold">
+                  Explore team <ArrowRight aria-hidden="true" className="size-4 transition-transform group-hover:translate-x-1" />
+                </span>
               </Card>
+              </Link>
             </StaggerItem>
           ))}
         </Stagger>

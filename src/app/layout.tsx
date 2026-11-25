@@ -1,3 +1,4 @@
+import Script from "next/script";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { SkipLink } from "@/components/layout/SkipLink";
@@ -16,7 +17,25 @@ const noscriptRevealFallback =
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" data-theme={siteConfig.theme} className={fontVariables}>
+    <html lang="en" data-theme={siteConfig.theme} className={fontVariables} suppressHydrationWarning>
+      <head>
+        <link
+          id="ses-theme-favicon"
+          rel="icon"
+          type="image/png"
+          sizes="512x512"
+          href="/brand/favicon-light.png"
+        />
+        <Script id="ses-theme-init" strategy="beforeInteractive">
+          {`try {
+            const saved = localStorage.getItem("ses-theme");
+            const theme = saved === "dark" || saved === "neo" ? saved : document.documentElement.dataset.theme;
+            if (theme === "dark" || theme === "neo") document.documentElement.dataset.theme = theme;
+            const icon = document.getElementById("ses-theme-favicon");
+            if (icon) icon.setAttribute("href", theme === "dark" ? "/brand/favicon-dark.png" : "/brand/favicon-light.png");
+          } catch {}`}
+        </Script>
+      </head>
       <body className="flex min-h-dvh flex-col">
         <noscript>
           <style>{noscriptRevealFallback}</style>

@@ -1,20 +1,35 @@
+import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
-/** Yellow "SES" chip linking home. */
+/** One theme-aware society seal; CSS ensures only the active artwork is rendered. */
 export function Logo({ className, onClick }: { className?: string; onClick?: () => void }) {
   return (
     <Link
       href="/"
       onClick={onClick}
-      className={cn(
-        "inline-flex press items-center brutal rounded-brutal-sm bg-accent px-2.5 py-1 font-display text-lg leading-none font-bold text-on-accent no-underline focus-ring",
-        className,
-      )}
+      aria-label={`${siteConfig.name} home`}
+      className={cn("inline-flex shrink-0 items-center rounded-full focus-ring", className)}
     >
-      {siteConfig.shortName}
-      <span className="sr-only"> · {siteConfig.name} home</span>
+      <Image
+        src="/brand/ses-logo-light.png"
+        alt=""
+        aria-hidden="true"
+        width={52}
+        height={52}
+        priority
+        className="ses-logo-light size-11 object-contain sm:size-12"
+      />
+      <Image
+        src="/brand/ses-logo-dark.png"
+        alt=""
+        aria-hidden="true"
+        width={52}
+        height={52}
+        priority
+        className="ses-logo-dark size-11 object-contain sm:size-12"
+      />
     </Link>
   );
 }

@@ -2,7 +2,7 @@ import type { TeamMember } from "@/types/content";
 import { base } from "./_base";
 
 // Real roster of the 2026-2027 term with photos.
-// Photos are stored in public/images/team/ and public/team/.
+// Team portraits live in public/images/team/.
 
 export const photo = (filename: string, name: string): TeamMember["photo"] => ({
   url: `/images/team/${filename}`,

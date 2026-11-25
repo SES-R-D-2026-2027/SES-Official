@@ -121,6 +121,11 @@
 
   body {
     @apply bg-bg font-sans text-ink antialiased;
+    color-scheme: light;
+  }
+
+  [data-theme="dark"] body {
+    color-scheme: dark;
   }
 
   h1,
@@ -134,70 +139,53 @@
   }
 }
 
-/* ───────── Neo-brutalist utilities for frontend integration ───────── */
+/* ───────── Theme-aware legacy utilities (mentor page) ───────── */
 @utility brut {
-  border: 2px solid #000;
-  box-shadow: 4px 4px 0 0 #000;
+  border: var(--ses-border-width) solid var(--ses-ink);
+  box-shadow: var(--ses-shadow-offset) var(--ses-shadow-offset) 0 0 var(--ses-ink);
 }
 @utility brut-sm {
-  border: 2px solid #000;
-  box-shadow: 2px 2px 0 0 #000;
+  border: var(--ses-border-width) solid var(--ses-ink);
+  box-shadow: 2px 2px 0 0 var(--ses-ink);
 }
 @utility brut-lg {
-  border: 2px solid #000;
-  box-shadow: 6px 6px 0 0 #000;
+  border: var(--ses-border-width) solid var(--ses-ink);
+  box-shadow: var(--ses-shadow-offset-lg) var(--ses-shadow-offset-lg) 0 0 var(--ses-ink);
 }
 @utility brut-xl {
-  border: 2px solid #000;
-  box-shadow: 9px 9px 0 0 #000;
+  border: var(--ses-border-width) solid var(--ses-ink);
+  box-shadow: 9px 9px 0 0 var(--ses-ink);
 }
 
-.shadow-brut {
-  box-shadow: 4px 4px 0 0 #000;
-}
-.shadow-brut-sm {
-  box-shadow: 2px 2px 0 0 #000;
-}
-.shadow-brut-lg {
-  box-shadow: 6px 6px 0 0 #000;
-}
-.shadow-brut-xl {
-  box-shadow: 9px 9px 0 0 #000;
-}
 
-.bg-card {
-  background-color: #fffdf9;
-}
-.bg-paper {
-  background-color: #faf8f5;
-}
-.bg-yellow {
-  background-color: #ffd84d;
-}
-.bg-pink {
-  background-color: #ff7a90;
-}
-.bg-mint {
-  background-color: #6ee7b7;
-}
-.bg-purple {
-  background-color: #b9a6ff;
-}
-.bg-sky {
-  background-color: #7fc8ff;
-}
+.shadow-brut { box-shadow: var(--ses-shadow-offset) var(--ses-shadow-offset) 0 0 var(--ses-ink); }
+.shadow-brut-sm { box-shadow: 2px 2px 0 0 var(--ses-ink); }
+.shadow-brut-lg { box-shadow: var(--ses-shadow-offset-lg) var(--ses-shadow-offset-lg) 0 0 var(--ses-ink); }
+.shadow-brut-xl { box-shadow: 9px 9px 0 0 var(--ses-ink); }
 
-.bg-dots {
-  background-image: radial-gradient(rgba(0, 0, 0, 0.12) 1.5px, transparent 1.5px);
-  background-size: 20px 20px;
-}
+.bg-card,
+.bg-white { background-color: var(--ses-surface); }
+.bg-paper { background-color: var(--ses-bg); }
+.bg-yellow { background-color: var(--ses-tile-yellow); }
+.bg-pink { background-color: var(--ses-tile-coral); }
+.bg-mint { background-color: var(--ses-tile-mint); }
+.bg-purple { background-color: var(--ses-tile-lilac); }
+.bg-sky { background-color: var(--ses-tile-sky); }
+.bg-dots { background-image: radial-gradient(var(--ses-dot) 1.5px, transparent 1.5px); background-size: 20px 20px; }
+
 
 @keyframes subtle-bounce {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-4px); }
 }
-
-.animate-subtle-bounce {
-  animation: subtle-bounce 2s ease-in-out infinite;
+.animate-subtle-bounce { animation: subtle-bounce 2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .animate-subtle-bounce { animation: none; }
 }
 
+
+/* Society seal: exactly one artwork is visible for the active theme. */
+.ses-logo-light { display: block; }
+.ses-logo-dark { display: none; }
+[data-theme="dark"] .ses-logo-light { display: none; }
+[data-theme="dark"] .ses-logo-dark { display: block; }

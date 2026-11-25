@@ -27,21 +27,58 @@ export interface DraggableProps {
   label?: string;
   /** Render static (e.g. `!features.draggableStickers`). */
   disabled?: boolean;
+  /** Stable key for remembering the dropped position across reloads. */
+  persistKey?: string;
+  /** Optional fixed drag region, useful when the immediate parent is only the card itself. */
+  dragBounds?: { top: number; right: number; bottom: number; left: number };
 }
 
 /**
- * Drag within the parent element's bounds; springs back to its spot on release.
- * Keyboard-nudged positions stay until Esc / Home.
+ * Drag freely within the parent element's bounds and persist the dropped position.
+ * Keyboard-nudged positions are persisted too; Esc / Home resets to the starting spot.
  */
-export function Draggable({ children, className, label, disabled }: DraggableProps) {
+export function Draggable({ children, className, label, disabled, persistKey, dragBounds }: DraggableProps) {
   const ref = useRef<HTMLDivElement>(null);
   const bounds = useRef<HTMLElement | null>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
   useEffect(() => {
-    bounds.current = ref.current?.parentElement ?? null;
-  }, []);
+    const node = ref.current;
+    const parent = node?.parentElement ?? null;
+    bounds.current = parent;
+    if (!node || !parent || !persistKey) return;
+
+    try {
+      const saved = localStorage.getItem(`ses-drag:${persistKey}`);
+      if (!saved) return;
+      const position = JSON.parse(saved) as { x?: number; y?: number };
+      const item = node.getBoundingClientRect();
+      const area = parent.getBoundingClientRect();
+      if (dragBounds) {
+        x.set(clamp(Number(position.x) || 0, dragBounds.left, dragBounds.right));
+        y.set(clamp(Number(position.y) || 0, dragBounds.top, dragBounds.bottom));
+      } else {
+        const minX = area.left - item.left;
+        const maxX = area.right - item.right;
+        const minY = area.top - item.top;
+        const maxY = area.bottom - item.bottom;
+        x.set(clamp(Number(position.x) || 0, minX, maxX));
+        y.set(clamp(Number(position.y) || 0, minY, maxY));
+      }
+    } catch {
+      // Ignore unavailable storage or malformed saved positions.
+    }
+  }, [persistKey, x, y, dragBounds]);
+
+  function savePosition() {
+    if (!persistKey) return;
+    try {
+      localStorage.setItem(`ses-drag:${persistKey}`, JSON.stringify({ x: x.get(), y: y.get() }));
+    } catch {
+      // Dragging still works when storage is unavailable.
+    }
+  }
 
   if (disabled) return <div className={className}>{children}</div>;
 
@@ -50,6 +87,13 @@ export function Draggable({ children, className, label, disabled }: DraggablePro
       event.preventDefault();
       animate(x, 0, spring.soft);
       animate(y, 0, spring.soft);
+      if (persistKey) {
+        try {
+          localStorage.setItem(`ses-drag:${persistKey}`, JSON.stringify({ x: 0, y: 0 }));
+        } catch {
+          // Ignore unavailable storage.
+        }
+      }
       return;
     }
     const step = arrowKeys[event.key];
@@ -59,10 +103,17 @@ export function Draggable({ children, className, label, disabled }: DraggablePro
     event.preventDefault();
     const box = node.getBoundingClientRect();
     const area = parent.getBoundingClientRect();
-    const dx = clamp(step[0] * distance.nudge, area.left - box.left, area.right - box.right);
-    const dy = clamp(step[1] * distance.nudge, area.top - box.top, area.bottom - box.bottom);
-    x.set(x.get() + dx);
-    y.set(y.get() + dy);
+    const nextX = x.get() + step[0] * distance.nudge;
+    const nextY = y.get() + step[1] * distance.nudge;
+    const dx = dragBounds
+      ? clamp(nextX, dragBounds.left, dragBounds.right)
+      : clamp(nextX, area.left - box.left + x.get(), area.right - box.right + x.get());
+    const dy = dragBounds
+      ? clamp(nextY, dragBounds.top, dragBounds.bottom)
+      : clamp(nextY, area.top - box.top + y.get(), area.bottom - box.bottom + y.get());
+    x.set(dx);
+    y.set(dy);
+    savePosition();
   }
 
   const a11yProps = label
@@ -80,9 +131,10 @@ export function Draggable({ children, className, label, disabled }: DraggablePro
       <m.div
         ref={ref}
         drag
-        dragConstraints={bounds}
-        dragElastic={0.2}
-        dragSnapToOrigin
+        dragConstraints={dragBounds ?? bounds}
+        dragElastic={0}
+        dragMomentum={false}
+        onDragEnd={savePosition}
         dragTransition={{
           bounceStiffness: spring.soft.stiffness,
           bounceDamping: spring.soft.damping,

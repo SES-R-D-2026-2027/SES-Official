@@ -25,7 +25,7 @@ Layer 3  TAILWIND     @theme inline      exposes semantic tokens as utilities: b
 ```
 
 Components only use Layer 3 utilities (or the custom `@utility` classes below).
-A new theme = a new `[data-theme="…"]` block that remaps Layer 2. Nothing else changes.
+A new theme = a new `[data-theme="…"]` block that remaps Layer 2. Nothing else changes. The site now ships with `neo` (light) and `dark`; the header theme control applies and remembers the selection across pages.
 
 ## 3. `tokens.css` (starting point — Tailwind CSS v4)
 
@@ -204,7 +204,7 @@ with +0.08em tracking. Mono labels must stay ≥ 11px (readable on mobile).
 
 Reference: `docs/reference/homepage-v1.png`. Changes vs the screenshot are marked **(new)**.
 
-1. **Header** — sticky, paper bg, bottom border. Left: yellow "SES" logo chip + small version tag
+1. **Header** — sticky, paper bg, bottom border. Left: theme-aware yellow "SES" fallback chip + small version tag
    + handwritten "student run!". Center: About, Events, Projects, Research, Resources. Right: "Join now →"
    (primary) + yellow square menu button (opens full menu). Mobile: logo + menu button → full-screen menu.
 2. **Hero** — big bordered paper card with dot grid. Tag "STUDENT-RUN ENGINEERING COLLECTIVE".

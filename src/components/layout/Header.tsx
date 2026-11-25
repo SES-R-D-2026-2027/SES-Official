@@ -6,6 +6,7 @@ import { Tag } from "@/components/ui/Tag";
 import { siteConfig } from "@/config/site";
 import { Logo } from "./Logo";
 import { MobileMenu } from "./MobileMenu";
+import { ThemeToggle } from "./ThemeToggle";
 import { NavLinks, NavList } from "./NavLinks";
 
 /** Sticky top bar: logo + version + note · nav (lg+) · Join now + menu button. */
@@ -28,7 +29,8 @@ export function Header() {
           </Suspense>
         </nav>
 
-        <div className="ml-auto flex items-center gap-3 lg:ml-0">
+        <div className="ml-auto flex items-center gap-2 lg:ml-0">
+          <ThemeToggle />
           <Button href={siteConfig.cta.href} arrow size="sm" className="hidden sm:inline-flex">
             {siteConfig.cta.label}
           </Button>
