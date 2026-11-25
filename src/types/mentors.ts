@@ -1,5 +1,3 @@
-import type { TileColor } from "./content";
-
 export interface MentorLink {
   email?: string;
   linkedin?: string;

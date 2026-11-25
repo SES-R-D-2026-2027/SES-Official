@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { MentorRow } from './MentorRow';
 import { MentorCard } from './MentorCard';
@@ -46,22 +46,16 @@ function CTABanner({
 }
 
 export function MentorsExplorer({ mainMentors = [], minorMentors = [] }: MentorsExplorerProps) {
-  const [data, setData] = useState<{ main: MainMentor[]; minor: MinorMentor[] }>({
-    main: mainMentors,
-    minor: minorMentors,
-  });
-
-  useEffect(() => {
-    setData({ main: mainMentors, minor: minorMentors });
-  }, [mainMentors, minorMentors]);
-
   const [activeStep, setActiveStep] = useState(0);
   const [selectedDept, setSelectedDept] = useState('all');
   const [stepScrollEnabled, setStepScrollEnabled] = useState(true);
 
   const isNavigatingRef = useRef(false);
   const stepScrollEnabledRef = useRef(stepScrollEnabled);
-  stepScrollEnabledRef.current = stepScrollEnabled;
+
+  useEffect(() => {
+    stepScrollEnabledRef.current = stepScrollEnabled;
+  }, [stepScrollEnabled]);
 
   // Ordered scroll target IDs
   const stepIds = useMemo(() => ['mentors-hero', 'mentor-row-1', 'mentor-row-2', 'mentor-row-3', 'mentors-grid'], []);
@@ -75,7 +69,7 @@ export function MentorsExplorer({ mainMentors = [], minorMentors = [] }: Mentors
   ];
 
   // Smooth navigation helper to target section
-  const scrollToTarget = (targetId: string) => {
+  const scrollToTarget = useCallback((targetId: string) => {
     const el = document.getElementById(targetId);
     if (!el) return;
     isNavigatingRef.current = true;
@@ -94,11 +88,11 @@ export function MentorsExplorer({ mainMentors = [], minorMentors = [] }: Mentors
     setTimeout(() => {
       isNavigatingRef.current = false;
     }, 750);
-  };
+  }, [stepIds]);
 
   // Track active section via IntersectionObserver
   useEffect(() => {
-    if (!data.main.length) return;
+    if (!mainMentors.length) return;
 
     const observers: IntersectionObserver[] = [];
     stepIds.forEach((id, index) => {
@@ -119,11 +113,11 @@ export function MentorsExplorer({ mainMentors = [], minorMentors = [] }: Mentors
     });
 
     return () => observers.forEach((obs) => obs.disconnect());
-  }, [data, stepIds]);
+  }, [mainMentors.length, stepIds]);
 
   // Wheel listener: 1st scroll -> row 1, 2nd -> row 2 (inverse), 3rd -> row 3, last -> col of mentors
   useEffect(() => {
-    if (!data.main.length) return;
+    if (!mainMentors.length) return;
 
     const handleWheel = (e: WheelEvent) => {
       if (!stepScrollEnabledRef.current) return;
@@ -167,14 +161,14 @@ export function MentorsExplorer({ mainMentors = [], minorMentors = [] }: Mentors
 
     window.addEventListener('wheel', handleWheel, { passive: false });
     return () => window.removeEventListener('wheel', handleWheel);
-  }, [data, activeStep, stepIds]);
+  }, [mainMentors.length, activeStep, stepIds, scrollToTarget]);
 
   // Filter minor mentors by department
   const filteredMinorMentors = useMemo(() => {
-    if (!data.minor) return [];
-    if (selectedDept === 'all') return data.minor;
-    return data.minor.filter((m) => m.department.toLowerCase() === selectedDept.toLowerCase());
-  }, [data, selectedDept]);
+    if (!minorMentors) return [];
+    if (selectedDept === 'all') return minorMentors;
+    return minorMentors.filter((m) => m.department.toLowerCase() === selectedDept.toLowerCase());
+  }, [minorMentors, selectedDept]);
 
   const departments = ['all', 'Alumni', 'Industry', 'Faculty'];
 
@@ -365,9 +359,9 @@ export function MentorsExplorer({ mainMentors = [], minorMentors = [] }: Mentors
           </div>
         </div>
 
-        {data.main.length ? (
+        {mainMentors.length ? (
           <div id="mentor-rows-container" className="flex flex-col gap-10">
-            {data.main.map((mentor, index) => {
+            {mainMentors.map((mentor, index) => {
               // Middle mentor (index 1 / row 2) is inversed: image on right, comments on left
               const isMiddleInversed = index === 1;
               const nextTargetId = index === 0 ? 'mentor-row-2' : index === 1 ? 'mentor-row-3' : 'mentors-grid';
