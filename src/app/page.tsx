@@ -23,6 +23,26 @@ export default async function HomePage() {
     getTeam(),
   ]);
   const projectStats = summarizeProjects(projects);
+  const officerStatIndex = stats.items.findIndex((item) =>
+    /^(people listed|total officers|officers)$/i.test(item.label.trim()),
+  );
+  const officerIndex = officerStatIndex >= 0 ? officerStatIndex : Math.min(1, stats.items.length - 1);
+  const officerStat = {
+    value: new Set(team.map((member) => member.id)).size,
+    label: "Total officers",
+    description: "Every person in the published officer directory counts, regardless of title.",
+    color: "mint" as const,
+  };
+  const homeStats = {
+    ...stats,
+    items: stats.items.length
+      ? stats.items.map((item, index) =>
+          index === officerIndex
+            ? { ...item, ...officerStat }
+            : item,
+        )
+      : [officerStat],
+  };
 
   return (
     <>
@@ -37,7 +57,7 @@ export default async function HomePage() {
         }))}
         activeProjects={projectStats.active}
       />
-      <StatsRow stats={stats} />
+      <StatsRow stats={homeStats} />
       <LabLife {...homeCopy.labLife} />
       {/* Events, projects and announcements homepage panels remain intentionally disabled. */}
       <TechPlayground />

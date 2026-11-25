@@ -32,11 +32,6 @@ export const siteConfig = {
   timeZone: "Asia/Karachi", // event dates/times are shown in campus time
   headerNote: "student run!", // handwritten note next to the logo
 
-  footerBar: {
-    motto: "SES // student-run, curiosity-fuelled, officially campus life",
-    status: "Status: all nodes operational",
-  },
-
   nav: [
     { label: "About", href: "/about" },
     { label: "Events", href: "/events" },
@@ -54,29 +49,26 @@ export const siteConfig = {
       title: "Explore",
       color: "yellow",
       links: [
+        { label: "About", href: "/about" },
         { label: "Events", href: "/events" },
-        { label: "Projects", href: "/projects" },
-        { label: "Departments", href: "/departments" },
-        { label: "Team", href: "/team" },
+        { label: "Research", href: "/research" },
+        { label: "Resources", href: "/resources" },
       ],
     },
     {
       title: "Learn",
       color: "mint",
       links: [
-        { label: "Resources", href: "/resources" },
-        { label: "Research", href: "/research" },
-        { label: "Technology", href: "/technology" },
-        { label: "Announcements", href: "/announcements" },
+        { label: "Projects", href: "/projects" },
+        { label: "Mentors", href: "/mentors" },
       ],
     },
     {
       title: "Connect",
       color: "lilac",
       links: [
-        { label: "Join SES", href: "/join" },
-        { label: "Contact", href: "/contact" },
-        { label: "About", href: "/about" },
+        { label: "Team", href: "/team" },
+        { label: "Join us", href: "/join" },
       ],
     },
   ] satisfies FooterColumn[],

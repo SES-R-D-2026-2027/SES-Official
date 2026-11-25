@@ -33,7 +33,16 @@ export function Logo({ className, onClick }: { className?: string; onClick?: () 
   return (
     <Link
       href="/"
-      onClick={onClick}
+      onClick={(event) => {
+        onClick?.();
+        const isPlainPrimaryClick =
+          event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey;
+        if (isPlainPrimaryClick && window.location.pathname === "/") {
+          event.preventDefault();
+          const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+        }
+      }}
       aria-label={`${siteConfig.name} home`}
       className={cn("inline-flex shrink-0 items-center rounded-full focus-ring", className)}
     >

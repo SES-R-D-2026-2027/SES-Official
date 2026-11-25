@@ -1,4 +1,4 @@
-import { Code, MessageCircle, type LucideIcon } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { cacheLife } from "next/cache";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
@@ -10,13 +10,14 @@ import type { TileColor } from "@/types/content";
 import { cn } from "@/lib/utils";
 import { Logo } from "./Logo";
 
-// lucide-react no longer ships brand logos, so socials use generic icons.
-const socialIcons: Partial<Record<SocialLink["icon"], LucideIcon>> = {
-  github: Code,
-  discord: MessageCircle,
-};
-
 function SocialMark({ brand }: { brand: SocialLink["icon"] }) {
+  if (brand === "github") {
+    return (
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" className="size-5">
+        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.605-2.665-.3-5.467-1.334-5.467-5.931 0-1.31.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.655 1.652.243 2.873.12 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.628-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.015 2.898-.015 3.293 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12Z" />
+      </svg>
+    );
+  }
   if (brand === "instagram") {
     return (
       <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="size-5">
@@ -33,8 +34,10 @@ function SocialMark({ brand }: { brand: SocialLink["icon"] }) {
       </svg>
     );
   }
-  const Icon = socialIcons[brand];
-  return Icon ? <Icon aria-hidden="true" className="size-5" /> : null;
+  if (brand === "discord") {
+    return <MessageCircle aria-hidden="true" className="size-5" />;
+  }
+  return null;
 }
 
 const socialColors: TileColor[] = ["yellow", "mint", "lilac", "coral"];
@@ -104,15 +107,6 @@ export function Footer() {
           </nav>
         ))}
       </Container>
-
-      <div className="border-t-brutal">
-        <Container className="flex flex-col items-start gap-3 py-4 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-mono text-xs font-medium tracking-widest text-ink uppercase">
-            {siteConfig.footerBar.motto}
-          </p>
-          <Tag color="yellow">{siteConfig.footerBar.status}</Tag>
-        </Container>
-      </div>
     </footer>
   );
 }

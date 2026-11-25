@@ -8,6 +8,8 @@ import { buildMetadata } from "@/lib/seo";
 import { fontVariables } from "@/styles/fonts";
 import "@/styles/globals.css";
 
+// Favicon is served through Next.js file-based metadata at /favicon.ico
+// from src/app/favicon.ico. Keep a single canonical icon source.
 export const metadata = buildMetadata();
 
 // Motion renders reveal elements hidden in the server HTML; without JS they must still show.
@@ -19,20 +21,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" data-theme={siteConfig.theme} className={fontVariables} suppressHydrationWarning>
       <head>
-        <link
-          id="ses-theme-favicon"
-          rel="icon"
-          type="image/png"
-          sizes="512x512"
-          href="/brand/favicon-light.png?v=5"
-        />
         <Script id="ses-theme-init" strategy="beforeInteractive">
           {`try {
             const saved = localStorage.getItem("ses-theme");
             const theme = saved === "dark" || saved === "neo" ? saved : document.documentElement.dataset.theme;
             if (theme === "dark" || theme === "neo") document.documentElement.dataset.theme = theme;
-            const icon = document.getElementById("ses-theme-favicon");
-            if (icon) icon.setAttribute("href", theme === "dark" ? "/brand/favicon-dark.png?v=5" : "/brand/favicon-light.png?v=5");
           } catch {}`}
         </Script>
       </head>

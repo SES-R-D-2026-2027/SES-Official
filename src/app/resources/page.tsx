@@ -19,6 +19,7 @@ export default async function ResourcesPage() {
   const [departments, team, projects] = await Promise.all([getDepartments(), getTeam(), getProjects()]);
   const completed = projects.filter((project) => project.projectStatus === "shipped" || project.projectStatus === "maintained").length;
   const active = projects.filter((project) => project.projectStatus === "in-progress").length;
+  const officerCount = new Set(team.map((member) => member.id)).size;
   const leadership = team.filter((member) => member.role === "leadership").length;
   const departmentLeads = team.filter((member) => member.role === "head").length;
 
@@ -26,7 +27,7 @@ export default async function ResourcesPage() {
     { value: String(departments.length), label: "Functional teams", note: "Current published department directory" },
     { value: String(leadership), label: "Leadership & advisor roles", note: "Current executive and advisor records" },
     { value: String(departmentLeads), label: "Department leads & co-leads", note: "Current published department leadership records" },
-    { value: String(team.length), label: "People listed", note: "Current published team directory; not total membership" },
+    { value: String(officerCount), label: "Total officers", note: "Every published role holder counts as an officer, regardless of title" },
     { value: String(projects.length), label: "Listed projects", note: "Projects currently in the website catalogue" },
     { value: String(completed), label: "Completed projects", note: "Marked shipped or maintained in the catalogue" },
     { value: String(active), label: "In-progress projects", note: "Currently marked in progress" },
@@ -85,8 +86,9 @@ export default async function ResourcesPage() {
             <div className="flex items-center gap-2 font-semibold"><span className="grid size-6 shrink-0 place-items-center"><ShieldCheck className="size-5 text-link" /></span> Measurement and verification</div>
             <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-muted">
               <li>Completed projects are counted only when their catalogue status is “shipped” or “maintained”.</li>
-              <li>Leadership and department-lead figures count published role records; they are not a count of all volunteers or society members.</li>
-              <li>People listed reflects the current public team dataset; it is not a count of all society members.</li>
+              <li>Total officers counts every unique person in the published team directory, including the president, vice presidents, advisor, leads and co-leads.</li>
+              <li>Leadership and department-lead figures are role breakdowns within the total officer count, not additional people to be added to it.</li>
+              <li>The officer total reflects the current public team dataset; it is not a count of every society member or volunteer.</li>
               <li>Mentor totals are withheld until a verified mentor roster is supplied.</li>
               <li>Website visits, unique visitors and engagement analytics are not displayed because no analytics provider is configured in this source package.</li>
               <li>Claims that SES is the largest society on campus need an official comparative source before a numerical ranking is published.</li>

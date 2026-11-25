@@ -29,8 +29,8 @@ export function TechPlayground() {
           tags={[{ label: copy.tag, color: "lilac" }]}
         />
 
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
-          <ul className="flex flex-wrap content-start gap-3 lg:col-span-3" aria-label="Topics we play with">
+        <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-5">
+          <ul className="flex flex-wrap content-start gap-3 self-start lg:col-span-3" aria-label="Topics we play with">
             {copy.items.map((item, index) => {
               const isActive = item.name === active;
               const color = colors[index % colors.length];
@@ -57,7 +57,7 @@ export function TechPlayground() {
           <div
             id={panelId}
             aria-live="polite"
-            className="flex flex-col gap-3 brutal rounded-brutal-lg bg-surface p-5 lg:col-span-2"
+            className="flex min-h-56 flex-col gap-3 self-start brutal rounded-brutal-lg bg-surface p-5 lg:col-span-2 lg:-mt-3"
           >
             <Tag color="yellow" className="self-start">
               Tiny taste

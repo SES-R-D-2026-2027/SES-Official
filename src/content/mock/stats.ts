@@ -12,8 +12,8 @@ export const stats: SiteStats = {
     },
     {
       value: 17,
-      label: "People listed",
-      description: "Published leadership, advisor, lead and co-lead records; not total membership.",
+      label: "Total officers",
+      description: "Every person in the published officer directory counts, regardless of title.",
       color: "mint",
     },
     {

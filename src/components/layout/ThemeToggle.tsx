@@ -7,11 +7,6 @@ export type SiteTheme = "neo" | "dark";
 const storageKey = "ses-theme";
 const themeEvent = "ses-theme-change";
 
-function syncFavicon(theme: SiteTheme) {
-  const icon = document.getElementById("ses-theme-favicon") as HTMLLinkElement | null;
-  if (icon) icon.href = theme === "dark" ? "/brand/favicon-dark.png?v=5" : "/brand/favicon-light.png?v=5";
-}
-
 /** Accessible, persistent light/dark theme control. */
 export function ThemeToggle() {
   const [theme, setTheme] = useState<SiteTheme>("neo");
@@ -27,14 +22,12 @@ export function ThemeToggle() {
     const current = saved === "dark" || saved === "neo" ? saved : document.documentElement.dataset.theme;
     const resolved: SiteTheme = current === "dark" ? "dark" : "neo";
     document.documentElement.dataset.theme = resolved;
-    syncFavicon(resolved);
     setTheme(resolved);
 
     const syncTheme = (event: Event) => {
       const next = (event as CustomEvent<SiteTheme>).detail;
       if (next === "dark" || next === "neo") {
         setTheme(next);
-        syncFavicon(next);
       }
     };
 
@@ -42,11 +35,9 @@ export function ThemeToggle() {
     return () => window.removeEventListener(themeEvent, syncTheme);
   }, []);
 
-
   const toggleTheme = () => {
     const next: SiteTheme = theme === "dark" ? "neo" : "dark";
     document.documentElement.dataset.theme = next;
-    syncFavicon(next);
     try {
       window.localStorage.setItem(storageKey, next);
     } catch {

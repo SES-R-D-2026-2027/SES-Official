@@ -27,10 +27,14 @@ export interface DepartmentWithTeam {
 /** Everything the /team page shows: officers, then each department with its people. */
 export async function getTeamOverview(): Promise<{
   officers: TeamMember[];
+  officerCount: number;
   departments: DepartmentWithTeam[];
 }> {
   const [team, departments] = await Promise.all([getTeam(), getDepartments()]);
   return {
+    // Every person in the published team roster is an officer, regardless of title.
+    // Count unique IDs so an accidental duplicate record cannot inflate the metric.
+    officerCount: new Set(team.map((member) => member.id)).size,
     officers: team.filter((member) => member.role === "leadership"),
     departments: departments.map((department) => ({
       department,

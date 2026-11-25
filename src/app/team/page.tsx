@@ -16,7 +16,7 @@ export const metadata = buildMetadata({
 const term = "2026–27 term";
 
 export default async function TeamPage() {
-  const { officers, departments } = await getTeamOverview();
+  const { officers, officerCount, departments } = await getTeamOverview();
   const leads = departments.reduce((sum, { members }) => sum + members.length, 0);
 
   return (
@@ -24,11 +24,12 @@ export default async function TeamPage() {
       <TeamHero
         term={term}
         officers={officers}
+        officerCount={officerCount}
         departments={departments.map(({ department }) => department)}
       />
       <TeamStats
         items={[
-          { value: officers.length, label: "Officers", color: "yellow" },
+          { value: officerCount, label: "Officers", color: "yellow", note: "All listed role holders" },
           { value: departments.length, label: "Teams", color: "mint" },
           { value: leads, label: "Leads & co-leads", color: "lilac" },
           { value: 100, suffix: "%", label: "Student-run", color: "coral", note: "always!" },

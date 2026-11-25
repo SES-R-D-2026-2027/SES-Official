@@ -12,13 +12,14 @@ import type { Department, TeamMember, TileColor } from "@/types/content";
 export interface TeamHeroProps {
   term: string;
   officers: TeamMember[];
+  officerCount: number;
   departments: Department[];
 }
 
 const badgeColors: TileColor[] = ["yellow", "mint", "lilac", "sky"];
 
 /** Team page hero. The officer cards and SES spheres share one bounded physics field. */
-export function TeamHero({ term, officers, departments }: TeamHeroProps) {
+export function TeamHero({ term, officers, officerCount, departments }: TeamHeroProps) {
   return (
     <section aria-labelledby="team-title" className="py-8 md:py-12">
       <Container>
@@ -40,7 +41,7 @@ export function TeamHero({ term, officers, departments }: TeamHeroProps) {
               </h1>
 
               <Highlight className="max-w-xl">
-                {officers.length} officers and {departments.length} teams of students who plan
+                {officerCount} officers and {departments.length} teams of students who plan
                 the events, build the projects and keep the society running.
               </Highlight>
 
