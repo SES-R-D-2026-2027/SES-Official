@@ -25,7 +25,7 @@ export function Avatar({ name, photo, color = 'bg-yellow', className = '' }: Ava
           width={400}
           height={400}
           loading="lazy"
-          className="aspect-square w-full object-cover transition-transform duration-300 ease-out group-hover:scale-110 group-focus-within:scale-110 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+          className="aspect-square w-full object-contain object-center transition-transform duration-300 ease-out group-hover:scale-110 group-focus-within:scale-110 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
         />
       ) : (
         <div

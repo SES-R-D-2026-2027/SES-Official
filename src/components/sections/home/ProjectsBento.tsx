@@ -77,7 +77,7 @@ function FeaturedProjectTile({ project }: { project: Project }) {
             alt={project.coverImage.alt}
             fill
             sizes="(min-width: 1024px) 560px, (min-width: 768px) 90vw, 100vw"
-            className="object-cover"
+            className="object-contain object-center"
           />
         </div>
       )}

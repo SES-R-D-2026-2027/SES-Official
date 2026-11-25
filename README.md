@@ -1,4 +1,4 @@
-# SES — Software Engineering Society
+# SES - Software Engineering Society
 
 Official website for the Software Engineering Society (SES) at FAST-NUCES, Islamabad.
 
@@ -59,11 +59,12 @@ src/
 │   ├── departments/[slug]/ # Dedicated page for each department
 │   ├── events/             # Events index and detail pages
 │   ├── projects/           # Project catalogue
+│   ├── research/           # Research and Development overview
 │   ├── resources/          # Sponsors, partners and published metrics
 │   └── team/               # Society leadership and department directory
 ├── components/
 │   ├── layout/             # Header, navigation, footer and theme controls
-│   ├── motion/             # Reusable motion and draggable interactions
+│   ├── motion/             # Reusable motion, drag controls and physics playground
 │   ├── sections/           # Page sections grouped by feature
 │   └── ui/                 # Shared UI primitives
 ├── config/                 # Site-wide configuration and feature flags
@@ -82,11 +83,12 @@ public/
 
 - **Departments and team structure:** `src/content/mock/departments.ts` and `src/content/mock/team.ts`.
 - **Projects:** `src/content/mock/projects.ts`. Use `idea`, `in-progress`, `shipped` or `maintained` as the project status.
+- **Research and Development:** `src/app/research/page.tsx` for the overview and `src/content/mock/departments.ts` for team responsibilities. Keep proposed exploration areas distinct from completed work.
 - **Events:** `src/content/mock/events.ts`.
 - **Mentors:** `src/content/mock/mentors.ts`. Publish only verified mentor names, roles, biographies and contact links.
 - **Homepage copy:** `src/content/home.ts`.
 - **Navigation, social links and contact details:** `src/config/site.ts`.
-- **Brand assets:** `public/brand/`. Keep light and dark artwork paired and test both themes.
+- **Brand assets:** `public/brand/`. The navbar uses one theme-swapped logo element. The favicon is a raster PNG with a contrasting background and switches with the selected theme.
 
 For a new department, add its record and member IDs to the content data. Its detail route is generated from `/departments/[slug]`.
 
@@ -98,7 +100,7 @@ Website traffic metrics (visitors, sessions, page views and engagement) are not 
 
 ## Git hygiene
 
-`.gitignore` excludes dependencies, build output, local environment files, caches, logs and generated handoff archives. Keep source files, lockfiles, documentation and intentional assets under `public/` tracked. In particular, do not ignore all `*.zip` files: some ZIPs under `public/` may be intentional downloadable resources.
+`.gitignore` excludes dependencies, build output, local environment files, caches, logs and generated handoff archives. The homepage and Team page include a click-to-launch SES sphere playground. Cards and spheres collide, and card positions persist in local storage. Keep source files, lockfiles, documentation and intentional assets under `public/` tracked. In particular, do not ignore all `*.zip` files: some ZIPs under `public/` may be intentional downloadable resources.
 
 If generated directories were already committed, remove them from the Git index (without deleting local copies) using:
 
@@ -109,7 +111,7 @@ git rm -r --cached --ignore-unmatch node_modules .next out build coverage .turbo
 Remove the generated handoff ZIP from tracking if it was committed:
 
 ```bash
-git rm --cached --ignore-unmatch ses-web-src-finalized.zip ses-web-src-fixed.zip ses-web-src.zip
+git rm --cached --ignore-unmatch ses-web-src-finalized.zip ses-web-src-fixed.zip ses-web-src-updated.zip ses-web-src-latest.zip ses-web-src.zip
 ```
 
 Then review and commit:
@@ -117,8 +119,8 @@ Then review and commit:
 ```bash
 git add .gitignore README.md
 git add -A
- git status --short
- git commit -m "chore: clean repository and update SES pages"
+git status --short
+git commit -m "chore: clean repository and update SES pages"
 ```
 
 If a large file is already present in previous Git history, `.gitignore` and `git rm --cached` will stop future tracking but will not shrink the existing remote history. History rewriting or Git LFS may be needed for that separate case.

@@ -23,7 +23,7 @@ export interface DepartmentMapProps {
 }
 
 // Node positions on a circle (in % of the square map); the first node sits at 12 o'clock.
-const RADIUS = 38;
+const RADIUS = 41;
 
 function position(index: number, count: number) {
   const angle = (-90 + (360 / count) * index) * (Math.PI / 180);
@@ -42,7 +42,7 @@ export function DepartmentMap({ departments, centerLabel, className }: Departmen
 
   return (
     <div className={cn("flex w-full flex-col gap-4", className)}>
-      <div className="relative mx-auto aspect-square w-full max-w-md">
+      <div className="relative mx-auto aspect-square w-full max-w-2xl">
         <svg
           aria-hidden="true"
           viewBox="0 0 100 100"
@@ -56,15 +56,27 @@ export function DepartmentMap({ departments, centerLabel, className }: Departmen
             strokeDasharray="2 1.5"
           />
           {points.map((p, i) => (
-            <line
-              key={departments[i].id}
-              x1={50}
-              y1={50}
-              x2={p.x}
-              y2={p.y}
-              strokeWidth={departments[i].id === activeId ? 1.2 : 0.5}
-              className={departments[i].id === activeId ? "stroke-link" : "stroke-ink"}
-            />
+            <g key={departments[i].id}>
+              <line
+                x1={50}
+                y1={50}
+                x2={p.x}
+                y2={p.y}
+                strokeWidth={departments[i].id === activeId ? 1.6 : 0.55}
+                className={departments[i].id === activeId ? "stroke-link" : "stroke-ink"}
+              />
+              <line
+                x1={50}
+                y1={50}
+                x2={p.x}
+                y2={p.y}
+                stroke="transparent"
+                strokeWidth={5}
+                pointerEvents="stroke"
+                onPointerEnter={() => setActiveId(departments[i].id)}
+                className="cursor-pointer"
+              />
+            </g>
           ))}
         </svg>
 
@@ -123,7 +135,7 @@ export function DepartmentMap({ departments, centerLabel, className }: Departmen
           </div>
         ) : (
           <p className="text-sm text-muted">
-            Hover or tap a team on the map. Ideas welcome — skills optional.
+            Hover or tap a team on the map. Ideas welcome. Skills optional.
           </p>
         )}
       </div>

@@ -15,7 +15,7 @@ export const projects: Project[] = [
     projectStatus: "in-progress",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
     techAreaIds: [],
-    // Built by the SES R&D Team. TODO(content): list individual contributors once confirmed.
+    // Built by the SES Research & Development Team. TODO(content): list individual contributors once confirmed.
     contributorIds: [],
     departmentId: "dep-dev",
     repoUrl: "https://github.com/SES-R-D-2026-2027/SES-Official",

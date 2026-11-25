@@ -19,7 +19,7 @@ export interface LabLifeProps {
 const tilts: Tilt[] = ["left", "right", "left", "right"];
 const activityColor = ["yellow", "mint", "lilac", "coral", "sky"] as const;
 
-/** "Yes, we touch grass." — polaroids + the people-side of SES. */
+/** "Yes, we touch grass." Polaroids + the people-side of SES. */
 export function LabLife({ tag, title, body, note, activities, photos }: LabLifeProps) {
   return (
     <Section labelledBy="lab-title" className="py-8 md:py-12">

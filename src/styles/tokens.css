@@ -102,7 +102,7 @@
 }
 
 
-/* Example of a future theme — only remap Layer 2:
+/* Example of a future theme: only remap Layer 2:
 [data-theme="minimal"] { --ses-border-width: 1px; --ses-shadow-offset: 0px; --ses-tilt: 0deg; … } */
 
 /* ───────── Layer 3 · TAILWIND THEME ───────── */

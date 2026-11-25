@@ -85,7 +85,7 @@ export function FeaturedEventTile({ event }: { event: Event }) {
             alt={event.coverImage.alt}
             fill
             sizes="(min-width: 1024px) 560px, (min-width: 768px) 90vw, 100vw"
-            className="object-cover"
+            className="object-contain object-center"
           />
         </div>
       )}
@@ -305,7 +305,7 @@ export function PastEventsTile({ events, href }: { events: Event[]; href: string
             {typeof photo === "string" ? (
               <Sticker shape="hexagon" color={photo} rotate="0" className="m-auto size-full p-4" />
             ) : (
-              <Image src={photo.url} alt="" fill sizes="112px" className="object-cover" />
+              <Image src={photo.url} alt="" fill sizes="112px" className="object-contain object-center" />
             )}
           </li>
         ))}

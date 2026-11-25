@@ -52,7 +52,7 @@ export default async function ResourcesPage() {
             <article className="brutal rounded-brutal bg-bg p-6">
               <Handshake className="size-8 text-link" aria-hidden="true" />
               <Tag color="mint" className="mt-4">Publicly documented collaboration</Tag>
-              <h2 className="mt-3 font-display text-2xl font-bold">Canva Student Community — FAST NUCES Islamabad</h2>
+              <h2 className="mt-3 font-display text-2xl font-bold">Canva Student Community at FAST NUCES Islamabad</h2>
               <p className="mt-2 text-sm leading-relaxed text-muted">SES’s public LinkedIn profile has documented a collaboration with the Canva Student Community at FAST NUCES Islamabad. This is listed as a collaboration, not represented as a paid sponsorship.</p>
               <a href="https://pk.linkedin.com/company/nuses" target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-link underline-offset-4 hover:underline">See public collaboration update <ArrowUpRight className="size-4" /></a>
             </article>

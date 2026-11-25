@@ -1,17 +1,12 @@
-import { Draggable } from "@/components/motion/Draggable";
-import { Float } from "@/components/motion/Float";
-import { Stagger, StaggerItem } from "@/components/motion/Stagger";
-import { Avatar } from "@/components/ui/Avatar";
+import { PlayfulPhysicsField } from "@/components/motion/PlayfulPhysicsField";
 import { Container } from "@/components/ui/Container";
-import { Star, Underline } from "@/components/ui/Doodle";
-import { HandNote } from "@/components/ui/HandNote";
+import { Underline } from "@/components/ui/Doodle";
 import { Highlight } from "@/components/ui/Highlight";
 import { Sticker } from "@/components/ui/Sticker";
 import { Tag } from "@/components/ui/Tag";
 import { tileColor } from "@/components/ui/variants";
-import { isEnabled } from "@/config/features";
-import type { Department, TeamMember, TileColor } from "@/types/content";
 import { cn } from "@/lib/utils";
+import type { Department, TeamMember, TileColor } from "@/types/content";
 
 export interface TeamHeroProps {
   term: string;
@@ -20,20 +15,9 @@ export interface TeamHeroProps {
 }
 
 const badgeColors: TileColor[] = ["yellow", "mint", "lilac", "sky"];
-// Scattered resting spots for the officer badges (desktop); they stack on mobile.
-const badgePlacement = [
-  "lg:max-w-xs lg:self-start",
-  "lg:max-w-xs lg:self-end",
-  "lg:max-w-xs lg:self-center",
-  "lg:max-w-xs lg:self-start",
-];
 
-/**
- * Team page hero. The heading is static (LCP); the officer badges pop in, bob gently and can be
- * dragged around. Department chips open the corresponding team detail page.
- */
+/** Team page hero. The officer cards and SES spheres share one bounded physics field. */
 export function TeamHero({ term, officers, departments }: TeamHeroProps) {
-  const draggable = isEnabled("draggableStickers");
   return (
     <section aria-labelledby="team-title" className="py-8 md:py-12">
       <Container>
@@ -60,16 +44,14 @@ export function TeamHero({ term, officers, departments }: TeamHeroProps) {
               </Highlight>
 
               <nav aria-label="Visit a department page" className="flex flex-col gap-3">
-                <HandNote arrow="down" className="pl-1">
-                  choose a team
-                </HandNote>
+                <p className="font-hand text-lg">Choose a team</p>
                 <ul className="flex flex-wrap gap-2">
                   {departments.map((department) => (
                     <li key={department.id}>
                       <a
                         href={`/departments/${department.slug}`}
                         className={cn(
-                          "inline-flex press items-center rounded-brutal-sm px-2.5 py-1 text-sm font-semibold shadow-brutal focus-ring border-brutal",
+                          "inline-flex items-center rounded-brutal-sm border-brutal px-2.5 py-1 text-sm font-semibold shadow-brutal focus-ring hover:-translate-y-0.5",
                           tileColor({ color: department.color ?? "paper" }),
                         )}
                       >
@@ -81,59 +63,22 @@ export function TeamHero({ term, officers, departments }: TeamHeroProps) {
               </nav>
             </div>
 
-            {/* Decorative: the officers are listed properly in the next section. */}
-            <div aria-hidden="true" className="relative flex flex-col gap-4 pt-2">
-              <Star className="absolute -top-2 right-2 size-8 text-primary" />
-              <Stagger className="flex flex-wrap justify-center gap-4 lg:flex-col lg:flex-nowrap">
-                {officers.map((officer, i) => (
-                  <StaggerItem
-                    key={officer.id}
-                    className={cn(
-                      "w-full sm:w-auto lg:w-full",
-                      badgePlacement[i % badgePlacement.length],
-                    )}
-                  >
-                    <Draggable
-                      disabled={!draggable}
-                      className="block"
-                      persistKey={`team-officer-${officer.id}`}
-                      dragBounds={{ top: -112, right: 112, bottom: 112, left: -112 }}
-                    >
-                      <Float delay={i * 0.6}>
-                        <div
-                          className={cn(
-                            "flex straighten items-center gap-3 brutal rounded-brutal p-3",
-                            i % 2 ? "tilt-r" : "tilt-l",
-                            tileColor({ color: badgeColors[i % badgeColors.length] }),
-                          )}
-                        >
-                          <Avatar
-                            name={officer.name}
-                            src={officer.photo?.url}
-                            alt={officer.photo?.alt}
-                            fallback="silhouette"
-                            color="paper"
-                            size="lg"
-                          />
-                          <span className="flex flex-col">
-                            <span className="font-display text-lg leading-tight font-bold">
-                              {officer.name}
-                            </span>
-                            <span className="font-mono text-xs tracking-widest uppercase">
-                              {officer.position}
-                            </span>
-                          </span>
-                        </div>
-                      </Float>
-                    </Draggable>
-                  </StaggerItem>
-                ))}
-              </Stagger>
-              {draggable && (
-                <HandNote arrow="up" className="self-center">
-                  go on, drag us around
-                </HandNote>
-              )}
+            <div className="relative min-w-0 pt-2">
+              <PlayfulPhysicsField
+                label="Interactive SES leadership cards and logo spheres"
+                heightClassName="min-h-[28rem] sm:min-h-[30rem]"
+                cards={officers.map((officer, index) => ({
+                  id: `team-${officer.id}`,
+                  title: officer.name,
+                  note: officer.position,
+                  color: badgeColors[index % badgeColors.length],
+                  image: officer.photo?.url,
+                  imageAlt: officer.photo?.alt,
+                }))}
+              />
+              <p className="mt-3 text-center font-mono text-[10px] tracking-widest text-muted uppercase">
+                Drag the cards or launch an SES sphere to move them
+              </p>
             </div>
           </div>
         </div>

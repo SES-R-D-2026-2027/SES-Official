@@ -9,7 +9,7 @@ const themeEvent = "ses-theme-change";
 
 function syncFavicon(theme: SiteTheme) {
   const icon = document.getElementById("ses-theme-favicon") as HTMLLinkElement | null;
-  if (icon) icon.href = theme === "dark" ? "/brand/favicon-dark.png" : "/brand/favicon-light.png";
+  if (icon) icon.href = theme === "dark" ? "/brand/favicon-dark.png?v=4" : "/brand/favicon-light.png?v=4";
 }
 
 /** Accessible, persistent light/dark theme control. */

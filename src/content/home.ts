@@ -104,7 +104,7 @@ export const homeCopy = {
       { name: "Next.js", blurb: "The site you're on. Pages, APIs and shipping something people can actually open." },
       { name: "Python", blurb: "Scripts, data, a little chaos. The Swiss army knife of campus projects." },
       { name: "AI / ML", blurb: "Bring a half-formed idea. Leave with something running. No AI experience required." },
-      { name: "Docker", blurb: "It works on my machine — and, after this, on yours too." },
+      { name: "Docker", blurb: "It works on my machine, and after this, on yours too." },
       { name: "Node.js", blurb: "JavaScript on the server. APIs, bots, and the glue between ideas." },
       { name: "TypeScript", blurb: "JavaScript with a seatbelt. Fewer 3 AM “why is this undefined” moments." },
       { name: "DevOps", blurb: "Deploys, pipelines and the dark art of not breaking production on a Friday." },

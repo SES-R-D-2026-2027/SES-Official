@@ -157,7 +157,7 @@ export default async function EventPage({ params }: EventPageProps) {
                   alt={photo.alt}
                   fill
                   sizes="(min-width: 1024px) 360px, (min-width: 640px) 45vw, 100vw"
-                  className="object-cover"
+                  className="object-contain object-center"
                 />
               </li>
             ))}

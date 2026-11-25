@@ -71,16 +71,17 @@ export const departments: Department[] = [
   ),
   department(
     "dep-dev",
-    "work-development",
-    "Work & Development",
-    "Builds the society's software, including this website.",
+    "research-development",
+    "Research & Development",
+    "Explores technical ideas, develops practical solutions and supports student learning.",
     "mint",
     ["tm-ermish", "tm-sanaullah"],
     4,
-    "Responsible for organizing student-led workshops and learning sessions while conducting technical research and developing practical solutions.",
+    "Supports student-led technical learning, explores software engineering topics, and develops practical prototypes and solutions.",
     [
-      "Organizes student-led workshops and learning sessions.",
-      "Conducts technical research and develops solutions.",
+      "Plans and supports technical workshops and learning sessions.",
+      "Explores software engineering topics and evaluates practical approaches.",
+      "Develops prototypes, documents findings, and supports society projects.",
     ],
   ),
   department(

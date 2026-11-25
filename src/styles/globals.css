@@ -184,8 +184,34 @@
 }
 
 
-/* Society seal: exactly one artwork is visible for the active theme. */
-.ses-logo-light { display: block; }
-.ses-logo-dark { display: none; }
-[data-theme="dark"] .ses-logo-light { display: none; }
-[data-theme="dark"] .ses-logo-dark { display: block; }
+/* One theme-swapped raster seal. Only one logo element exists in the DOM. */
+.ses-logo-theme {
+  display: block;
+  flex: 0 0 auto;
+  background-image: url("/brand/ses-logo-light.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+[data-theme="dark"] .ses-logo-theme {
+  background-image: url("/brand/ses-logo-dark.png");
+}
+
+/* Glossy SES spheres used by the click-to-launch physics playground. */
+.ses-physics-orb {
+  background:
+    radial-gradient(circle at 31% 24%, rgba(255, 255, 255, 0.96) 0 5%, rgba(255, 255, 255, 0.52) 6% 13%, transparent 25%),
+    radial-gradient(circle at 38% 32%, #d9f2ff 0%, #8bc5ed 31%, #477ebc 67%, #163866 100%);
+  cursor: grab;
+  touch-action: none;
+  transition: filter 160ms ease;
+}
+.ses-physics-orb:active { cursor: grabbing; filter: saturate(1.15); }
+[data-theme="dark"] .ses-physics-orb {
+  background:
+    radial-gradient(circle at 31% 24%, rgba(255, 255, 255, 0.96) 0 5%, rgba(255, 255, 255, 0.52) 6% 13%, transparent 25%),
+    radial-gradient(circle at 38% 32%, #b9e5ff 0%, #5599d0 31%, #23558e 67%, #071a35 100%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ses-physics-orb { transition: none; }
+}

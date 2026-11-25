@@ -49,7 +49,7 @@ export function EventCard({ event, past = false }: EventCardProps) {
             alt={event.coverImage.alt}
             fill
             sizes="(min-width: 768px) 144px, 100vw"
-            className="object-cover"
+            className="object-contain object-center"
           />
         </div>
       )}

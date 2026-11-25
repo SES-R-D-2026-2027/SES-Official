@@ -96,7 +96,7 @@ export const team: TeamMember[] = [
     "Lead",
     "head",
     "dep-dev",
-    photo("Lead_WorkshopsandR&D_ErmishTabassum.jpg", "Ermish Tabassum"),
+    photo("lead-research-development-ermish-tabassum.jpg", "Ermish Tabassum"),
   ),
   member(
     "sanaullah",
@@ -104,7 +104,7 @@ export const team: TeamMember[] = [
     "Co-Lead",
     "head",
     "dep-dev",
-    photo("Colead_WorkshopandR&D_MuhammadSanaUllah.jpg", "Muhammad Sanaullah"),
+    photo("colead-research-development-muhammad-sanaullah.jpg", "Muhammad Sanaullah"),
   ),
   member(
     "abiha-jibran",

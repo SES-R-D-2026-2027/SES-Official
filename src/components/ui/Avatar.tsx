@@ -76,7 +76,7 @@ export function Avatar({
           alt={alt ?? name}
           fill
           sizes={imageSizes[sizeKey]}
-          className="object-cover"
+          className="object-contain object-center"
         />
       ) : fallback === "silhouette" ? (
         <span role="img" aria-label={name} className="absolute inset-0">

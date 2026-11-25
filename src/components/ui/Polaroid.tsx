@@ -33,7 +33,7 @@ export function Polaroid({
     >
       <div className="relative aspect-4/3 overflow-hidden rounded-brutal-sm bg-tile-blue border-brutal">
         {image ? (
-          <Image src={image.src} alt={image.alt} fill sizes={sizes} className="object-cover" />
+          <Image src={image.src} alt={image.alt} fill sizes={sizes} className="object-contain object-center" />
         ) : (
           <div
             role="img"
