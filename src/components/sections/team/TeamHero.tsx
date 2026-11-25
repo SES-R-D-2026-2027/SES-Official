@@ -2,6 +2,7 @@ import { PlayfulPhysicsField } from "@/components/motion/PlayfulPhysicsField";
 import { Container } from "@/components/ui/Container";
 import { Underline } from "@/components/ui/Doodle";
 import { Highlight } from "@/components/ui/Highlight";
+import { HandNote } from "@/components/ui/HandNote";
 import { Sticker } from "@/components/ui/Sticker";
 import { Tag } from "@/components/ui/Tag";
 import { tileColor } from "@/components/ui/variants";
@@ -76,9 +77,9 @@ export function TeamHero({ term, officers, departments }: TeamHeroProps) {
                   imageAlt: officer.photo?.alt,
                 }))}
               />
-              <p className="mt-3 text-center font-mono text-[10px] tracking-widest text-muted uppercase">
-                Drag the cards or launch an SES sphere to move them
-              </p>
+              <HandNote decorative={false} className="mt-3 w-full justify-center text-center text-2xl font-semibold sm:text-3xl">
+                Drag cards, click and launch SES!
+              </HandNote>
             </div>
           </div>
         </div>

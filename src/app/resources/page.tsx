@@ -50,7 +50,7 @@ export default async function ResourcesPage() {
           <SectionHeading title="Sponsors & collaborators" description="We welcome organizations that want to support student learning, practical projects, events and meaningful campus engagement." />
           <div className="grid gap-5 md:grid-cols-2">
             <article className="brutal rounded-brutal bg-bg p-6">
-              <Handshake className="size-8 text-link" aria-hidden="true" />
+              <Handshake className="mx-auto block size-8 text-link" aria-hidden="true" />
               <Tag color="mint" className="mt-4">Publicly documented collaboration</Tag>
               <h2 className="mt-3 font-display text-2xl font-bold">Canva Student Community at FAST NUCES Islamabad</h2>
               <p className="mt-2 text-sm leading-relaxed text-muted">SES’s public LinkedIn profile has documented a collaboration with the Canva Student Community at FAST NUCES Islamabad. This is listed as a collaboration, not represented as a paid sponsorship.</p>
@@ -68,15 +68,21 @@ export default async function ResourcesPage() {
 
       <Section divider>
         <Container className="flex flex-col gap-8">
-          <div className="flex items-start gap-4">
-            <ChartNoAxesCombined className="mt-1 size-8 shrink-0 text-link" aria-hidden="true" />
-            <SectionHeading title="Society snapshot" description="Live totals derived from the website’s current public content records. These are directory and project-catalogue counts, not audited university-wide statistics." />
+          <div className="flex flex-col items-center gap-3 text-center">
+            <span className="grid size-12 place-items-center rounded-full border-brutal bg-highlight">
+              <ChartNoAxesCombined className="block size-7 text-link" aria-hidden="true" />
+            </span>
+            <SectionHeading
+              title="Society snapshot"
+              description="Live totals derived from the website’s current public content records. These are directory and project-catalogue counts, not audited university-wide statistics."
+              className="items-center text-center md:flex-col md:items-center"
+            />
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {metrics.map((metric) => <article key={metric.label} className="brutal rounded-brutal bg-surface p-5"><p className="font-display text-3xl font-bold">{metric.value}</p><h3 className="mt-2 font-semibold">{metric.label}</h3><p className="mt-1 text-xs leading-relaxed text-muted">{metric.note}</p></article>)}
           </div>
           <div className="rounded-brutal border-brutal bg-surface p-5">
-            <div className="flex items-center gap-2 font-semibold"><ShieldCheck className="size-5 text-link" /> Measurement and verification</div>
+            <div className="flex items-center gap-2 font-semibold"><span className="grid size-6 shrink-0 place-items-center"><ShieldCheck className="size-5 text-link" /></span> Measurement and verification</div>
             <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-muted">
               <li>Completed projects are counted only when their catalogue status is “shipped” or “maintained”.</li>
               <li>Leadership and department-lead figures count published role records; they are not a count of all volunteers or society members.</li>

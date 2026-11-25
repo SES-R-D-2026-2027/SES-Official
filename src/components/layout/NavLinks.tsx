@@ -17,7 +17,7 @@ const navIcons = {
 } as const;
 
 const linkClasses =
-  "rounded-brutal-sm px-3 py-1.5 text-sm font-medium text-ink no-underline transition-colors hover:bg-highlight focus-ring aria-[current=page]:bg-highlight aria-[current=page]:border-brutal";
+  "inline-flex min-h-9 items-center justify-center gap-1.5 rounded-brutal-sm px-3 py-1.5 text-sm font-medium text-ink no-underline transition-colors hover:bg-highlight focus-ring aria-[current=page]:bg-highlight aria-[current=page]:border-brutal";
 
 /** Desktop nav links. Server fallback (in Header's Suspense) renders the same list unmarked. */
 export function NavList({ pathname }: { pathname?: string | null }) {
@@ -36,7 +36,7 @@ export function NavList({ pathname }: { pathname?: string | null }) {
               aria-current={active ? "page" : undefined}
               className={cn(linkClasses)}
             >
-              {Icon && <Icon aria-hidden="true" className="mr-1.5 inline size-4 align-[-3px]" />}
+              {Icon && <span className="grid size-5 shrink-0 place-items-center"><Icon aria-hidden="true" className="block size-4" strokeWidth={1.8} /></span>}
               {link.label}
             </Link>
           </li>

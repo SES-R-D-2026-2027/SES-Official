@@ -61,18 +61,18 @@ export default async function ResearchPage() {
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-3">
-            <article className="brutal rounded-brutal bg-tile-yellow p-5">
-              <FlaskConical className="size-7" aria-hidden="true" />
+            <article className="brutal rounded-brutal bg-tile-yellow p-5 text-center">
+              <FlaskConical className="mx-auto block size-7" aria-hidden="true" />
               <h2 className="mt-3 font-display text-xl font-bold">Investigate</h2>
               <p className="mt-2 text-sm">Understand the problem before choosing a solution.</p>
             </article>
-            <article className="brutal rounded-brutal bg-tile-mint p-5">
-              <Code2 className="size-7" aria-hidden="true" />
+            <article className="brutal rounded-brutal bg-tile-mint p-5 text-center">
+              <Code2 className="mx-auto block size-7" aria-hidden="true" />
               <h2 className="mt-3 font-display text-xl font-bold">Prototype</h2>
               <p className="mt-2 text-sm">Test ideas through small, practical implementations.</p>
             </article>
-            <article className="brutal rounded-brutal bg-tile-lilac p-5">
-              <BookOpenCheck className="size-7" aria-hidden="true" />
+            <article className="brutal rounded-brutal bg-tile-lilac p-5 text-center">
+              <BookOpenCheck className="mx-auto block size-7" aria-hidden="true" />
               <h2 className="mt-3 font-display text-xl font-bold">Share</h2>
               <p className="mt-2 text-sm">Record findings so other students can build on them.</p>
             </article>
@@ -89,8 +89,8 @@ export default async function ResearchPage() {
           />
           <div className="grid gap-5 sm:grid-cols-2">
             {explorationTracks.map(({ icon: Icon, title, description }) => (
-              <article key={title} className="brutal rounded-brutal bg-bg p-6">
-                <Icon aria-hidden="true" className="size-8 text-link" />
+              <article key={title} className="brutal rounded-brutal bg-bg p-6 text-center">
+                <Icon aria-hidden="true" className="mx-auto block size-8 text-link" strokeWidth={1.8} />
                 <h3 className="mt-4 font-display text-xl font-bold">{title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{description}</p>
               </article>

@@ -42,7 +42,7 @@ export function DepartmentMap({ departments, centerLabel, className }: Departmen
 
   return (
     <div className={cn("flex w-full flex-col gap-4", className)}>
-      <div className="relative mx-auto aspect-square w-full max-w-2xl">
+      <div className="relative mx-auto aspect-square w-full max-w-[29rem]">
         <svg
           aria-hidden="true"
           viewBox="0 0 100 100"
@@ -118,7 +118,7 @@ export function DepartmentMap({ departments, centerLabel, className }: Departmen
       <div
         id={panelId}
         aria-live="polite"
-        className="min-h-24 rounded-brutal bg-surface p-4 border-brutal"
+        className="flex min-h-28 w-full flex-col justify-center rounded-brutal bg-surface p-4 border-brutal"
       >
         {active ? (
           <div className="flex flex-col gap-2">

@@ -21,7 +21,7 @@ export function Hero({ departments, activeProjects }: HeroProps) {
     <section aria-labelledby="hero-title" className="py-8 md:py-12">
       <Container>
         <div className="relative brutal rounded-brutal-lg bg-surface dot-grid p-5 shadow-brutal-lg sm:p-8 lg:p-12">
-          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-12">
+          <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:gap-12">
             <div className="flex flex-col items-start gap-6">
               <Tag color="yellow" className="whitespace-normal">
                 {copy.tag}
@@ -36,7 +36,7 @@ export function Hero({ departments, activeProjects }: HeroProps) {
                 <span className="mt-1 block">{copy.titleRest}</span>
               </h1>
 
-              <Highlight className="max-w-xl">{copy.intro}</Highlight>
+              <Highlight className="flex min-h-28 max-w-xl items-center">{copy.intro}</Highlight>
 
               <div className="flex flex-col items-start gap-3">
                 <div className="flex flex-wrap gap-3">
@@ -59,22 +59,25 @@ export function Hero({ departments, activeProjects }: HeroProps) {
               </ul>
             </div>
 
-            <div className="relative flex min-h-[31rem] items-center justify-center px-2 py-6 sm:px-5">
+            <div className="relative -mt-2 flex min-w-0 flex-col items-center justify-start gap-3 px-2 py-0 sm:px-5 lg:-mt-5">
               <DepartmentMap departments={departments} centerLabel="SES core" />
+              <HandNote decorative={false} className="w-full justify-center text-center text-2xl font-semibold sm:text-3xl">
+                Drag these cards around!
+              </HandNote>
+              <PlayfulPhysicsField
+                label="Three draggable SES idea cards"
+                heightClassName="h-36 sm:h-36"
+                showOrbs={false}
+                cards={copy.floats.map((float, index) => ({
+                  id: `home-v2-${index}`,
+                  title: float.title,
+                  note: float.note,
+                  color: float.color,
+                }))}
+              />
             </div>
           </div>
 
-          <div className="mt-6">
-            <PlayfulPhysicsField
-              label="SES logo and card physics playground"
-              cards={copy.floats.map((float, index) => ({
-                id: `home-${index}`,
-                title: float.title,
-                note: float.note,
-                color: float.color,
-              }))}
-            />
-          </div>
         </div>
       </Container>
     </section>

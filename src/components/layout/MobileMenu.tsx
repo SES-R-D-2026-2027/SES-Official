@@ -114,7 +114,7 @@ export function MobileMenu() {
                             tileColor({ color: linkColors[index % linkColors.length] }),
                           )}
                         >
-                          {Icon && <Icon aria-hidden="true" className="size-5" />}
+                          {Icon && <span className="grid size-6 shrink-0 place-items-center"><Icon aria-hidden="true" className="block size-5" strokeWidth={1.8} /></span>}
                           {link.label}
                         </Link>
                       </m.li>

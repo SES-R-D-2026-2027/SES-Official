@@ -184,17 +184,33 @@
 }
 
 
-/* One theme-swapped raster seal. Only one logo element exists in the DOM. */
-.ses-logo-theme {
-  display: block;
+/* A single theme-swapped logo on a contrasting badge so the seal stays visible. */
+.ses-logo-shell {
+  display: grid;
+  width: 3.5rem;
+  height: 3.5rem;
   flex: 0 0 auto;
-  background-image: url("/brand/ses-logo-light.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
+  place-items: center;
+  overflow: hidden;
+  padding: 0.12rem;
+  border: 2px solid #4e77ab;
+  border-radius: 9999px;
+  background: #ffffff;
+  box-shadow: 3px 3px 0 #4e77ab;
 }
-[data-theme="dark"] .ses-logo-theme {
-  background-image: url("/brand/ses-logo-dark.png");
+.ses-logo-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+[data-theme="dark"] .ses-logo-shell {
+  border-color: #a1c1eb;
+  background: #08172b;
+  box-shadow: 3px 3px 0 #a1c1eb;
+}
+@media (max-width: 639px) {
+  .ses-logo-shell { width: 3.25rem; height: 3.25rem; }
 }
 
 /* Glossy SES spheres used by the click-to-launch physics playground. */

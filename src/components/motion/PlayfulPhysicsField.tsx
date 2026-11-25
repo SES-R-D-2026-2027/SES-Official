@@ -56,19 +56,21 @@ const storeKey = "ses-physics-card:";
 const ballAnchors = [0.18, 0.5, 0.82];
 
 /**
- * Small, click-to-launch SES physics playground. Cards can be moved directly or nudged with
- * arrow keys. Launched logo spheres collide with the cards and each other. Positions persist.
+ * Click-to-launch SES physics playground. Cards stay where they are dropped and only fall after
+ * an orb impact. Spheres collide with cards and one another, and card positions persist.
  */
 export function PlayfulPhysicsField({
   cards,
   className = "",
   label = "Interactive SES playground",
   heightClassName = "min-h-[22rem] sm:min-h-[19rem]",
+  showOrbs = true,
 }: {
   cards: PhysicsCardItem[];
   className?: string;
   label?: string;
   heightClassName?: string;
+  showOrbs?: boolean;
 }) {
   const boardRef = useRef<HTMLDivElement>(null);
   const ballsRef = useRef<BallBody[]>([]);
@@ -85,13 +87,11 @@ export function PlayfulPhysicsField({
     const height = board.clientHeight;
     sizeRef.current = { width, height };
     const isNarrow = width < 620;
-    const cardAnchors = isNarrow
-      ? cards.length > 3
+    const cardAnchors = cards.length > 3
+      ? isNarrow
         ? [[0.02, 0.035], [0.98, 0.035], [0.02, 0.64], [0.98, 0.64]]
-        : [[0.02, 0.06], [0.98, 0.06], [0.5, 0.62]]
-      : cards.length > 3
-        ? [[0.02, 0.04], [0.98, 0.04], [0.02, 0.64], [0.98, 0.64]]
-        : [[0.02, 0.08], [0.5, 0.08], [0.98, 0.08]];
+        : [[0.02, 0.04], [0.98, 0.04], [0.02, 0.64], [0.98, 0.64]]
+      : [[0.02, 0.045], [0.5, 0.045], [0.98, 0.045]];
 
     const cardNodes = Array.from(board.querySelectorAll<HTMLDivElement>("[data-physics-card]"));
     cardsRef.current = cardNodes.map((node, index) => {
@@ -115,7 +115,7 @@ export function PlayfulPhysicsField({
       return { id: item.id, x, y, vx: 0, vy: 0, awake: false, width: cardWidth, height: cardHeight, node };
     });
 
-    const ballNodes = Array.from(board.querySelectorAll<HTMLButtonElement>("[data-physics-orb]"));
+    const ballNodes = showOrbs ? Array.from(board.querySelectorAll<HTMLButtonElement>("[data-physics-orb]")) : [];
     ballsRef.current = ballNodes.map((node, index) => {
       const diameter = node.offsetWidth || 68;
       const radius = diameter / 2;
@@ -160,39 +160,39 @@ export function PlayfulPhysicsField({
 
         for (const ball of ballsRef.current) {
           if ((active?.kind === "ball" && active.id === ball.id) || !ball.awake) continue;
-          ball.vy += 0.22;
+          ball.vy += 0.095;
           ball.x += ball.vx;
           ball.y += ball.vy;
-          ball.vx *= 0.999;
-          if (ball.x < 0) { ball.x = 0; ball.vx = Math.abs(ball.vx) * 0.78; }
-          if (ball.x + ball.radius * 2 > boardWidth) { ball.x = boardWidth - ball.radius * 2; ball.vx = -Math.abs(ball.vx) * 0.78; }
-          if (ball.y < 0) { ball.y = 0; ball.vy = Math.abs(ball.vy) * 0.78; }
+          ball.vx *= 0.9996;
+          if (ball.x < 0) { ball.x = 0; ball.vx = Math.abs(ball.vx) * 0.96; }
+          if (ball.x + ball.radius * 2 > boardWidth) { ball.x = boardWidth - ball.radius * 2; ball.vx = -Math.abs(ball.vx) * 0.96; }
+          if (ball.y < 0) { ball.y = 0; ball.vy = Math.abs(ball.vy) * 0.94; }
           if (ball.y + ball.radius * 2 > boardHeight) {
             ball.y = boardHeight - ball.radius * 2;
-            ball.vy = Math.abs(ball.vy) > 1 ? -Math.abs(ball.vy) * 0.58 : 0;
-            ball.vx *= 0.985;
-            if (Math.abs(ball.vx) < 0.09 && Math.abs(ball.vy) < 0.08) {
+            ball.vy = Math.abs(ball.vy) > 0.35 ? -Math.abs(ball.vy) * 0.93 : 0;
+            ball.vx *= 0.997;
+            if (Math.abs(ball.vx) < 0.11 && Math.abs(ball.vy) < 0.11) {
               ball.vx = 0;
               ball.vy = 0;
               ball.awake = false;
             }
           }
-          if (Math.abs(ball.vx) < 0.035) ball.vx = 0;
-          if (Math.abs(ball.vy) < 0.08 && ball.y + ball.radius * 2 >= boardHeight - 1) ball.vy = 0;
+          if (Math.abs(ball.vx) < 0.045) ball.vx = 0;
+          if (Math.abs(ball.vy) < 0.1 && ball.y + ball.radius * 2 >= boardHeight - 1) ball.vy = 0;
         }
 
         for (const card of cardsRef.current) {
           if ((active?.kind === "card" && active.id === card.id) || !card.awake) continue;
-          card.vy += 0.18;
+          card.vy += 0.24;
           card.x += card.vx;
           card.y += card.vy;
-          card.vx *= 0.985;
+          card.vx *= 0.992;
           if (card.x < 0) { card.x = 0; card.vx = Math.abs(card.vx) * 0.35; }
           if (card.x + card.width > boardWidth) { card.x = boardWidth - card.width; card.vx = -Math.abs(card.vx) * 0.35; }
           if (card.y < 0) { card.y = 0; card.vy = Math.abs(card.vy) * 0.35; }
           if (card.y + card.height > boardHeight) {
             card.y = boardHeight - card.height;
-            card.vy = Math.abs(card.vy) > 0.9 ? -Math.abs(card.vy) * 0.28 : 0;
+            card.vy = Math.abs(card.vy) > 0.9 ? -Math.abs(card.vy) * 0.34 : 0;
             card.vx *= 0.9;
             if (Math.abs(card.vx) < 0.09 && Math.abs(card.vy) < 0.08) {
               card.vx = 0;
@@ -204,9 +204,10 @@ export function PlayfulPhysicsField({
           if (Math.abs(card.vy) < 0.08 && card.y + card.height >= boardHeight - 1) card.vy = 0;
         }
 
-        // Sphere-to-card collisions transfer momentum to the card.
+        // Sphere-card collisions are always resolved, even when one body is stationary.
+        // This prevents visual overlap if a card is dropped over an orb or falls onto one.
         for (const ball of ballsRef.current) {
-          if ((active?.kind === "ball" && active.id === ball.id) || !ball.awake) continue;
+          if (active?.kind === "ball" && active.id === ball.id) continue;
           const centerX = ball.x + ball.radius;
           const centerY = ball.y + ball.radius;
           for (const card of cardsRef.current) {
@@ -224,14 +225,19 @@ export function PlayfulPhysicsField({
             const penetration = ball.radius - distance;
             ball.x += nx * penetration;
             ball.y += ny * penetration;
-            const normalSpeed = ball.vx * nx + ball.vy * ny;
-            if (normalSpeed < 0) {
-              ball.vx -= 1.72 * normalSpeed * nx;
-              ball.vy -= 1.72 * normalSpeed * ny;
+
+            const relativeNormalSpeed = (ball.vx - card.vx) * nx + (ball.vy - card.vy) * ny;
+            if (relativeNormalSpeed < 0) {
+              const impulse = -relativeNormalSpeed * 1.3;
+              ball.vx += impulse * nx;
+              ball.vy += impulse * ny;
+              card.vx -= impulse * 0.72 * nx;
+              card.vy -= impulse * 0.72 * ny;
+              if (Math.abs(relativeNormalSpeed) > 0.2) {
+                ball.awake = true;
+                card.awake = true;
+              }
             }
-            card.vx += -nx * Math.max(Math.abs(normalSpeed) * 0.72, 1.8);
-            card.vy += -ny * Math.max(Math.abs(normalSpeed) * 0.72, 1.8);
-            card.awake = true;
           }
         }
 
@@ -361,17 +367,17 @@ export function PlayfulPhysicsField({
       if (!active || active.pointerId !== event.pointerId) return;
       const body = getBody(active.kind, active.id);
       if (body) {
-        const impulse = active.moved ? 1 : 0;
         if (active.kind === "ball") {
           const ball = body as BallBody;
-          ball.vx = active.moved ? clamp(active.lastDeltaX * 0.72, -15, 15) : (ball.id % 2 ? 4.5 : -4.5);
-          ball.vy = active.moved ? clamp(active.lastDeltaY * 0.72, -15, 15) : -8.5;
+          ball.vx = active.moved ? clamp(active.lastDeltaX * 1.25, -26, 26) : (ball.id % 2 ? 6.8 : -6.8);
+          ball.vy = active.moved ? clamp(active.lastDeltaY * 1.25, -26, 26) : -14;
           ball.awake = true;
         } else {
           const card = body as CardBody;
-          card.vx = clamp(active.lastDeltaX * 0.28 * impulse, -8, 8);
-          card.vy = clamp(active.lastDeltaY * 0.28 * impulse, -8, 8);
-          card.awake = Math.abs(card.vx) > 0.08 || Math.abs(card.vy) > 0.08;
+          card.vx = 0;
+          card.vy = 0;
+          card.awake = false;
+          persistCards();
         }
       }
       dragRef.current = null;
@@ -416,8 +422,8 @@ export function PlayfulPhysicsField({
     (board as HTMLDivElement & { __sesLaunchBall?: (id: number) => void }).__sesLaunchBall = (id) => {
       const ball = ballsRef.current.find((body) => body.id === id);
       if (!ball) return;
-      ball.vx += id % 2 ? 4.5 : -4.5;
-      ball.vy = -8.5;
+      ball.vx += id % 2 ? 6.8 : -6.8;
+      ball.vy = -14;
       ball.awake = true;
       startSimulation();
     };
@@ -434,7 +440,7 @@ export function PlayfulPhysicsField({
       frameRef.current = null;
       dragRef.current = null;
     };
-  }, [cards]);
+  }, [cards, showOrbs]);
 
   const startDrag = (event: ReactPointerEvent<HTMLElement>, kind: ActiveDrag["kind"], id: ActiveDrag["id"]) => {
     const board = boardRef.current as (HTMLDivElement & { __sesStartDrag?: (event: ReactPointerEvent<HTMLElement>, kind: ActiveDrag["kind"], id: ActiveDrag["id"]) => void }) | null;
@@ -460,9 +466,6 @@ export function PlayfulPhysicsField({
   return (
     <div className={`relative ${heightClassName} overflow-hidden rounded-brutal-lg border-2 border-dashed border-ink/30 bg-bg/70 dot-grid ${className}`}>
       <div ref={boardRef} className="absolute inset-0 touch-none" aria-label={label}>
-        <div className="pointer-events-none absolute top-2 left-3 z-20 rounded-full bg-surface/90 px-3 py-1 font-mono text-[10px] tracking-widest text-muted uppercase">
-          Drag cards. Click or drag an SES orb to launch it.
-        </div>
         {cards.map((item) => (
           <div
             key={item.id}
@@ -472,7 +475,7 @@ export function PlayfulPhysicsField({
             aria-label={`${item.title}. Drag to move or use arrow keys.`}
             onPointerDown={(event) => startDrag(event, "card", item.id)}
             onKeyDown={(event) => nudgeCard(item.id, event)}
-            className="absolute z-10 w-[min(14rem,44%)] cursor-grab select-none active:cursor-grabbing focus-ring"
+            className={`absolute z-10 ${cards.length > 3 ? "w-[min(14rem,44%)]" : "w-[min(13rem,31%)] sm:w-[min(14rem,31%)]"} cursor-grab select-none active:cursor-grabbing focus-ring`}
             style={{ left: 0, top: 0 }}
           >
             <Card color={item.color} padding="sm" className="min-h-24 w-full shadow-brutal-lg">
@@ -488,7 +491,7 @@ export function PlayfulPhysicsField({
             </Card>
           </div>
         ))}
-        {ballAnchors.map((_, index) => (
+        {showOrbs && ballAnchors.map((_, index) => (
           <button
             key={index}
             type="button"
@@ -498,10 +501,10 @@ export function PlayfulPhysicsField({
             onKeyDown={(event) => {
               if (event.key === "Enter" || event.key === " ") { event.preventDefault(); launchBall(index); }
             }}
-            className="ses-physics-orb absolute z-20 flex size-16 items-center justify-center rounded-full border-2 border-white/70 shadow-[0_10px_18px_rgba(8,22,46,0.34),inset_-7px_-9px_14px_rgba(4,21,49,0.38),inset_5px_5px_12px_rgba(255,255,255,0.62)] outline-offset-4 focus-visible:outline-2 focus-visible:outline-link sm:size-[4.5rem]"
+            className="ses-physics-orb absolute z-30 flex size-12 items-center justify-center rounded-full border-2 border-white/70 shadow-[0_5px_8px_rgba(8,22,46,0.2),inset_-3px_-4px_7px_rgba(4,21,49,0.2),inset_3px_3px_6px_rgba(255,255,255,0.58)] outline-offset-4 focus-visible:outline-2 focus-visible:outline-link sm:size-13"
             style={{ left: 0, top: 0 }}
           >
-            <Image src="/brand/ses-ball-mark.png" alt="" aria-hidden="true" width={38} height={38} draggable={false} className="relative z-10 size-9 object-contain" />
+            <Image src="/brand/ses-ball-mark.png" alt="" aria-hidden="true" width={34} height={34} draggable={false} className="relative z-10 size-7 object-contain" />
           </button>
         ))}
       </div>
