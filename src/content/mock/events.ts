@@ -3,9 +3,8 @@ import { base } from "./_base";
 
 // Real SES events (content doc, Oct 2026). Times are UTC instants; the site shows them in campus
 // time (PKT). Registration links are EXTERNAL only (O-02).
-// To add photos: put them in public/images/events/<slug>/ and set
-// coverImage: { url: "/images/events/<slug>/cover.jpg", alt: "…", width, height } (4:3 landscape)
-// and gallery: [{ url, alt, width, height }, …].
+// Event media is stored in R2 under v1/images/events/<slug>/.
+// Add new media through the approved admin upload flow, then reference its /media/... URL.
 
 export const events: Event[] = [
   /* ───────── ongoing ───────── */
@@ -25,16 +24,16 @@ export const events: Event[] = [
     isOnline: false,
     badge: "Workshop",
     coverImage: {
-      url: "/images/events/soventure/Soventure_pf_workshop.jpg",
+      url: "/media/v1/images/events/soventure/Soventure_pf_workshop.jpg",
       alt: "Students attending an SES technical workshop session",
     },
     gallery: [
       {
-        url: "/images/events/soventure/Soventure_Cursor_Session.png",
+        url: "/media/v1/images/events/soventure/Soventure_Cursor_Session.png",
         alt: "Hands-on Cursor AI coding session",
       },
       {
-        url: "/images/events/canva-workshop/audience.jpg",
+        url: "/media/v1/images/events/canva-workshop/audience.jpg",
         alt: "Students participating in a campus workshop",
       },
     ],
@@ -55,16 +54,16 @@ export const events: Event[] = [
     isOnline: false,
     badge: "Workshop",
     coverImage: {
-      url: "/images/events/canva-workshop/cover.jpg",
+      url: "/media/v1/images/events/canva-workshop/cover.jpg",
       alt: "Canva x SES Portfolio & Personal Branding Workshop banner",
     },
     gallery: [
       {
-        url: "/images/events/canva-workshop/speaker.jpg",
+        url: "/media/v1/images/events/canva-workshop/speaker.jpg",
         alt: "Speaker session at Canva portfolio and personal branding workshop",
       },
       {
-        url: "/images/events/canva-workshop/audience.jpg",
+        url: "/media/v1/images/events/canva-workshop/audience.jpg",
         alt: "Attendees engaged in the Canva portfolio session",
       },
     ],
@@ -85,20 +84,20 @@ export const events: Event[] = [
     isOnline: false,
     badge: "Welcome",
     coverImage: {
-      url: "/images/events/orientation/Orientation_2025.JPG",
+      url: "/media/v1/images/events/orientation/Orientation_2025.JPG",
       alt: "SES Welcome and Orientation event at FAST NUCES",
     },
     gallery: [
       {
-        url: "/images/events/orientation/orientation_25batch.jpg",
+        url: "/media/v1/images/events/orientation/orientation_25batch.jpg",
         alt: "Batch 2025 students gathering at the SES Orientation",
       },
       {
-        url: "/images/events/orientation/Orientation_2025(1).JPG",
+        url: "/media/v1/images/events/orientation/Orientation_2025(1).JPG",
         alt: "Orientation activities and senior-junior networking",
       },
       {
-        url: "/images/events/orientation/Orientation_2025(2).JPG",
+        url: "/media/v1/images/events/orientation/Orientation_2025(2).JPG",
         alt: "Orientation fun games and team building moments",
       },
     ],
@@ -120,28 +119,28 @@ export const events: Event[] = [
     isOnline: false,
     badge: "Flagship event",
     coverImage: {
-      url: "/images/events/soventure/Soventure_Banners.jpg",
+      url: "/media/v1/images/events/soventure/Soventure_Banners.jpg",
       alt: "Soventure flagship event official banner and entrance",
     },
     gallery: [
       {
-        url: "/images/events/soventure/soventure_bonfire.jpg",
+        url: "/media/v1/images/events/soventure/soventure_bonfire.jpg",
         alt: "Evening bonfire celebration at Soventure",
       },
       {
-        url: "/images/events/soventure/Soventure_chess_tournament.JPG",
+        url: "/media/v1/images/events/soventure/Soventure_chess_tournament.JPG",
         alt: "Competitors in the Soventure chess tournament",
       },
       {
-        url: "/images/events/soventure/Soventure_Cursor_Session.png",
+        url: "/media/v1/images/events/soventure/Soventure_Cursor_Session.png",
         alt: "Soventure Cursor AI developer workshop",
       },
       {
-        url: "/images/events/soventure/Soventure_pf_workshop.jpg",
+        url: "/media/v1/images/events/soventure/Soventure_pf_workshop.jpg",
         alt: "Programming fundamentals workshop in action at Soventure",
       },
       {
-        url: "/images/events/soventure/soventure_stalls.jpg",
+        url: "/media/v1/images/events/soventure/soventure_stalls.jpg",
         alt: "Recreational stalls and student booths at Soventure",
       },
     ],
@@ -162,16 +161,16 @@ export const events: Event[] = [
     isOnline: false,
     badge: "Industry collab",
     coverImage: {
-      url: "/images/events/arbisoft/Arbisoft_speaker_session.JPG",
+      url: "/media/v1/images/events/arbisoft/Arbisoft_speaker_session.JPG",
       alt: "Arbisoft guest speaker addressing students at the mock interview session",
     },
     gallery: [
       {
-        url: "/images/events/arbisoft/arbisoft_SES_collab.JPG",
+        url: "/media/v1/images/events/arbisoft/arbisoft_SES_collab.JPG",
         alt: "SES executive team presenting shield to Arbisoft experts",
       },
       {
-        url: "/images/events/arbisoft/arbisoft_session.JPG",
+        url: "/media/v1/images/events/arbisoft/arbisoft_session.JPG",
         alt: "Students attending the live mock interview session in the auditorium",
       },
     ],

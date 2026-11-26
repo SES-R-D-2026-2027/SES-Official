@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // R2 media is served by the Worker route, not the static image optimizer.
+  images: { unoptimized: true },
   async redirects() {
     return [
       {

@@ -43,28 +43,28 @@ export const homeCopy = {
     photos: [
       {
         image: {
-          url: "/images/IMG-20251129-WA0065.jpg",
+          url: "/media/v1/images/IMG-20251129-WA0065.jpg",
           alt: "Students coding in the computer lab during the Web Dev Hackathon",
         },
         caption: "Hackathon in full swing",
       },
       {
         image: {
-          url: "/images/IMG-20251129-WA0186.jpg",
+          url: "/media/v1/images/IMG-20251129-WA0186.jpg",
           alt: "Students presenting project demos to mentors and peers in the lab",
         },
         caption: "Pitching our projects",
       },
       {
         image: {
-          url: "/images/IMG-20251129-WA0244.jpg",
+          url: "/media/v1/images/IMG-20251129-WA0244.jpg",
           alt: "Group photo of hackathon participants and winners holding shields and certificates",
         },
         caption: "Winners & the squad :)",
       },
       {
         image: {
-          url: "/images/IMG_5931.JPG",
+          url: "/media/v1/images/IMG_5931.JPG",
           alt: "SES jamming session with acoustic guitars and students singing on stage",
         },
         caption: "Jamming night vibes",

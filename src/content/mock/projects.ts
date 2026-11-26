@@ -2,8 +2,7 @@ import type { Project } from "@/types/content";
 import { base } from "./_base";
 
 // Real society projects (content doc, Oct 2026).
-// To add a screenshot: put a 16:9 image at public/images/projects/<slug>.jpg and set
-// coverImage: { url: "/images/projects/<slug>.jpg", alt: "…", width, height }.
+// Project media is stored in R2. New files should be uploaded through the approved admin upload flow.
 
 export const projects: Project[] = [
   {

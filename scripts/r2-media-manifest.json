@@ -1,0 +1,302 @@
+{
+  "bucket": "ses-official-media",
+  "databaseId": "db493d58-f656-4b8e-b776-edd9e5f4b1ed",
+  "assets": [
+    {
+      "source": "public/brand/ses-ball-mark.png",
+      "key": "v1/brand/ses-ball-mark.png",
+      "sizeBytes": 52163,
+      "contentType": "image/png",
+      "id": "media-99df9675f7348378368d25fe",
+      "fileName": "ses-ball-mark.png"
+    },
+    {
+      "source": "public/brand/ses-logo-dark.png",
+      "key": "v1/brand/ses-logo-dark.png",
+      "sizeBytes": 342864,
+      "contentType": "image/png",
+      "id": "media-b192a2fa9bb2a32e78819edc",
+      "fileName": "ses-logo-dark.png"
+    },
+    {
+      "source": "public/brand/ses-logo-light.png",
+      "key": "v1/brand/ses-logo-light.png",
+      "sizeBytes": 353221,
+      "contentType": "image/png",
+      "id": "media-f17cec40e784ac9865780f22",
+      "fileName": "ses-logo-light.png"
+    },
+    {
+      "source": "public/images/IMG-20251129-WA0065.jpg",
+      "key": "v1/images/IMG-20251129-WA0065.jpg",
+      "sizeBytes": 213678,
+      "contentType": "image/jpeg",
+      "id": "media-e8d3e2f7d439503fe9108929",
+      "fileName": "IMG-20251129-WA0065.jpg"
+    },
+    {
+      "source": "public/images/IMG-20251129-WA0186.jpg",
+      "key": "v1/images/IMG-20251129-WA0186.jpg",
+      "sizeBytes": 115148,
+      "contentType": "image/jpeg",
+      "id": "media-c9acfc140e889309d9268bdd",
+      "fileName": "IMG-20251129-WA0186.jpg"
+    },
+    {
+      "source": "public/images/IMG-20251129-WA0244.jpg",
+      "key": "v1/images/IMG-20251129-WA0244.jpg",
+      "sizeBytes": 144505,
+      "contentType": "image/jpeg",
+      "id": "media-9b03b48415048c7d3c8a0772",
+      "fileName": "IMG-20251129-WA0244.jpg"
+    },
+    {
+      "source": "public/images/IMG_5931.JPG",
+      "key": "v1/images/IMG_5931.JPG",
+      "sizeBytes": 366514,
+      "contentType": "image/jpeg",
+      "id": "media-99f336680997ff9407246446",
+      "fileName": "IMG_5931.JPG"
+    },
+    {
+      "source": "public/images/events/arbisoft/Arbisoft_speaker_session.JPG",
+      "key": "v1/images/events/arbisoft/Arbisoft_speaker_session.JPG",
+      "sizeBytes": 244737,
+      "contentType": "image/jpeg",
+      "id": "media-40d9281ca92a08dd2502217c",
+      "fileName": "Arbisoft_speaker_session.JPG"
+    },
+    {
+      "source": "public/images/events/arbisoft/arbisoft_SES_collab.JPG",
+      "key": "v1/images/events/arbisoft/arbisoft_SES_collab.JPG",
+      "sizeBytes": 257787,
+      "contentType": "image/jpeg",
+      "id": "media-350478466903df06ddede082",
+      "fileName": "arbisoft_SES_collab.JPG"
+    },
+    {
+      "source": "public/images/events/arbisoft/arbisoft_session.JPG",
+      "key": "v1/images/events/arbisoft/arbisoft_session.JPG",
+      "sizeBytes": 282923,
+      "contentType": "image/jpeg",
+      "id": "media-fd9bf07a8a3c1119fe65d85b",
+      "fileName": "arbisoft_session.JPG"
+    },
+    {
+      "source": "public/images/events/canva-workshop/audience.jpg",
+      "key": "v1/images/events/canva-workshop/audience.jpg",
+      "sizeBytes": 394319,
+      "contentType": "image/jpeg",
+      "id": "media-cda2c90d07ab6da91e3299ec",
+      "fileName": "audience.jpg"
+    },
+    {
+      "source": "public/images/events/canva-workshop/cover.jpg",
+      "key": "v1/images/events/canva-workshop/cover.jpg",
+      "sizeBytes": 323503,
+      "contentType": "image/jpeg",
+      "id": "media-4fb3f56d76b571dca0289c73",
+      "fileName": "cover.jpg"
+    },
+    {
+      "source": "public/images/events/canva-workshop/speaker.jpg",
+      "key": "v1/images/events/canva-workshop/speaker.jpg",
+      "sizeBytes": 248253,
+      "contentType": "image/jpeg",
+      "id": "media-c946cc038608033879aa1263",
+      "fileName": "speaker.jpg"
+    },
+    {
+      "source": "public/images/events/orientation/Orientation_2025(1).JPG",
+      "key": "v1/images/events/orientation/Orientation_2025(1).JPG",
+      "sizeBytes": 241389,
+      "contentType": "image/jpeg",
+      "id": "media-787108b4bfe0c944726cca77",
+      "fileName": "Orientation_2025(1).JPG"
+    },
+    {
+      "source": "public/images/events/orientation/Orientation_2025(2).JPG",
+      "key": "v1/images/events/orientation/Orientation_2025(2).JPG",
+      "sizeBytes": 382289,
+      "contentType": "image/jpeg",
+      "id": "media-360d1ac593d666e8412bcf92",
+      "fileName": "Orientation_2025(2).JPG"
+    },
+    {
+      "source": "public/images/events/orientation/Orientation_2025.JPG",
+      "key": "v1/images/events/orientation/Orientation_2025.JPG",
+      "sizeBytes": 455829,
+      "contentType": "image/jpeg",
+      "id": "media-8bdbdacbd761da5eca1ad579",
+      "fileName": "Orientation_2025.JPG"
+    },
+    {
+      "source": "public/images/events/orientation/orientation_25batch.jpg",
+      "key": "v1/images/events/orientation/orientation_25batch.jpg",
+      "sizeBytes": 274960,
+      "contentType": "image/jpeg",
+      "id": "media-ff28ac6ed614254df6948aa5",
+      "fileName": "orientation_25batch.jpg"
+    },
+    {
+      "source": "public/images/events/soventure/Soventure_Banners.jpg",
+      "key": "v1/images/events/soventure/Soventure_Banners.jpg",
+      "sizeBytes": 231156,
+      "contentType": "image/jpeg",
+      "id": "media-a4b7049dd1e6bf1a3c7d1fb7",
+      "fileName": "Soventure_Banners.jpg"
+    },
+    {
+      "source": "public/images/events/soventure/Soventure_Cursor_Session.png",
+      "key": "v1/images/events/soventure/Soventure_Cursor_Session.png",
+      "sizeBytes": 1906527,
+      "contentType": "image/png",
+      "id": "media-65542c4106391338db24264c",
+      "fileName": "Soventure_Cursor_Session.png"
+    },
+    {
+      "source": "public/images/events/soventure/Soventure_chess_tournament.JPG",
+      "key": "v1/images/events/soventure/Soventure_chess_tournament.JPG",
+      "sizeBytes": 269121,
+      "contentType": "image/jpeg",
+      "id": "media-922a246c2011dc3d1f63b2f4",
+      "fileName": "Soventure_chess_tournament.JPG"
+    },
+    {
+      "source": "public/images/events/soventure/Soventure_pf_workshop.jpg",
+      "key": "v1/images/events/soventure/Soventure_pf_workshop.jpg",
+      "sizeBytes": 159709,
+      "contentType": "image/jpeg",
+      "id": "media-27b66bc6fc61952a2259ab6c",
+      "fileName": "Soventure_pf_workshop.jpg"
+    },
+    {
+      "source": "public/images/events/soventure/soventure_bonfire.jpg",
+      "key": "v1/images/events/soventure/soventure_bonfire.jpg",
+      "sizeBytes": 330610,
+      "contentType": "image/jpeg",
+      "id": "media-1961fe97b669288ad57dc922",
+      "fileName": "soventure_bonfire.jpg"
+    },
+    {
+      "source": "public/images/events/soventure/soventure_stalls.jpg",
+      "key": "v1/images/events/soventure/soventure_stalls.jpg",
+      "sizeBytes": 96204,
+      "contentType": "image/jpeg",
+      "id": "media-ff3b51bb9de1e8a673d4d0d1",
+      "fileName": "soventure_stalls.jpg"
+    },
+    {
+      "source": "public/images/team/Advisor_SES_ArsalTemuri.jpg",
+      "key": "v1/images/team/Advisor_SES_ArsalTemuri.jpg",
+      "sizeBytes": 121070,
+      "contentType": "image/jpeg",
+      "id": "media-7a938ae2661f68a4c78470a1",
+      "fileName": "Advisor_SES_ArsalTemuri.jpg"
+    },
+    {
+      "source": "public/images/team/Colead_Operations_Mohsin-Khan.jpg",
+      "key": "v1/images/team/Colead_Operations_Mohsin-Khan.jpg",
+      "sizeBytes": 165142,
+      "contentType": "image/jpeg",
+      "id": "media-fa11885b15524683216a4947",
+      "fileName": "Colead_Operations_Mohsin-Khan.jpg"
+    },
+    {
+      "source": "public/images/team/Colead_media&graphics_Muhammad_Faiq_Haider.jpg",
+      "key": "v1/images/team/Colead_media&graphics_Muhammad_Faiq_Haider.jpg",
+      "sizeBytes": 258073,
+      "contentType": "image/jpeg",
+      "id": "media-5dcb2ddede04ced0b7a8c945",
+      "fileName": "Colead_media&graphics_Muhammad_Faiq_Haider.jpg"
+    },
+    {
+      "source": "public/images/team/Lead_Events_Usman.jpg",
+      "key": "v1/images/team/Lead_Events_Usman.jpg",
+      "sizeBytes": 296855,
+      "contentType": "image/jpeg",
+      "id": "media-b7f1f4005355fb4d117011d2",
+      "fileName": "Lead_Events_Usman.jpg"
+    },
+    {
+      "source": "public/images/team/Lead_Info&Coord_AsharAhmed.jpg",
+      "key": "v1/images/team/Lead_Info&Coord_AsharAhmed.jpg",
+      "sizeBytes": 237320,
+      "contentType": "image/jpeg",
+      "id": "media-84d5a9c5273205f3c0fcf806",
+      "fileName": "Lead_Info&Coord_AsharAhmed.jpg"
+    },
+    {
+      "source": "public/images/team/Lead_Logistics_&_Decor_Saliha_Noor.jpg",
+      "key": "v1/images/team/Lead_Logistics_&_Decor_Saliha_Noor.jpg",
+      "sizeBytes": 449836,
+      "contentType": "image/jpeg",
+      "id": "media-ab877ee5bbe7f62995cced37",
+      "fileName": "Lead_Logistics_&_Decor_Saliha_Noor.jpg"
+    },
+    {
+      "source": "public/images/team/Lead_Security_SanaIdrees.jpg",
+      "key": "v1/images/team/Lead_Security_SanaIdrees.jpg",
+      "sizeBytes": 319214,
+      "contentType": "image/jpeg",
+      "id": "media-d9fc55184f6154c9648d997d",
+      "fileName": "Lead_Security_SanaIdrees.jpg"
+    },
+    {
+      "source": "public/images/team/President_SES_Maryam.jpg",
+      "key": "v1/images/team/President_SES_Maryam.jpg",
+      "sizeBytes": 222033,
+      "contentType": "image/jpeg",
+      "id": "media-2157f0d69d30f3651403a712",
+      "fileName": "President_SES_Maryam.jpg"
+    },
+    {
+      "source": "public/images/team/VPExternals_SES_Salman.jpg",
+      "key": "v1/images/team/VPExternals_SES_Salman.jpg",
+      "sizeBytes": 44512,
+      "contentType": "image/jpeg",
+      "id": "media-00a04107a561e7a7c7937556",
+      "fileName": "VPExternals_SES_Salman.jpg"
+    },
+    {
+      "source": "public/images/team/VPinternal_SES_Fizza.jpg",
+      "key": "v1/images/team/VPinternal_SES_Fizza.jpg",
+      "sizeBytes": 371563,
+      "contentType": "image/jpeg",
+      "id": "media-a666426d7968873928490a3a",
+      "fileName": "VPinternal_SES_Fizza.jpg"
+    },
+    {
+      "source": "public/images/team/colead-research-development-muhammad-sanaullah.jpg",
+      "key": "v1/images/team/colead-research-development-muhammad-sanaullah.jpg",
+      "sizeBytes": 198947,
+      "contentType": "image/jpeg",
+      "id": "media-aa1b12db3ec8cf02fd7bdc8a",
+      "fileName": "colead-research-development-muhammad-sanaullah.jpg"
+    },
+    {
+      "source": "public/images/team/lead-research-development-ermish-tabassum.jpg",
+      "key": "v1/images/team/lead-research-development-ermish-tabassum.jpg",
+      "sizeBytes": 302431,
+      "contentType": "image/jpeg",
+      "id": "media-187a2807bdf9c744627ad5bd",
+      "fileName": "lead-research-development-ermish-tabassum.jpg"
+    },
+    {
+      "source": "public/images/team/lead_Media&Graphics_AbihaJibbran.jpg",
+      "key": "v1/images/team/lead_Media&Graphics_AbihaJibbran.jpg",
+      "sizeBytes": 546608,
+      "contentType": "image/jpeg",
+      "id": "media-5de08eae4396db75ecbefbed",
+      "fileName": "lead_Media&Graphics_AbihaJibbran.jpg"
+    },
+    {
+      "source": "public/images/team/lead_marketing_ishmalnajeeb.png",
+      "key": "v1/images/team/lead_marketing_ishmalnajeeb.png",
+      "sizeBytes": 1179369,
+      "contentType": "image/png",
+      "id": "media-0777bb372cb4c0c801b30314",
+      "fileName": "lead_marketing_ishmalnajeeb.png"
+    }
+  ]
+}

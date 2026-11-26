@@ -1,7 +1,7 @@
 import { cacheLife, cacheTag } from "next/cache";
 import { apiFetch } from "@/lib/api/client";
 
-// The single mock ⇄ API switch. Getters in lib/data/* call fromSource() and never care which
+// The single mock ⇄ Worker API switch. Getters in lib/data/* call fromSource() and never care which
 // source is active. Server-only: never import this from a "use client" file.
 
 export type DataSource = "mock" | "api";
@@ -13,7 +13,7 @@ export function getDataSource(): DataSource {
 interface FromSourceOptions<T> {
   /** Returns the typed mock data (from src/content/mock). */
   mock: () => T | Promise<T>;
-  /** ses-api path, e.g. "/api/public/events?timeline=upcoming". */
+  /** Worker API path, e.g. "/api/public/events?timeline=upcoming". */
   api: string;
   /** Cache tags so admin edits can revalidate later, e.g. ["events"]. */
   tags: string[];
@@ -25,9 +25,9 @@ export async function fromSource<T>({ mock, api, tags }: FromSourceOptions<T>): 
 }
 
 /**
- * Cached ses-api read. With Cache Components on (next.config.ts), caching is opt-in via
+ * Cached Worker API read. With Cache Components on (next.config.ts), caching is opt-in via
  * "use cache"; this replaces the older `fetch(url, { next: { revalidate, tags } })` pattern.
- * revalidate: 300 keeps the old 5-minute revalidation from CLAUDE.md.
+ * revalidate: 300 preserves the existing 5-minute revalidation interval.
  */
 async function fetchPublic<T>(path: string, tags: string[]): Promise<T> {
   "use cache";
@@ -35,7 +35,7 @@ async function fetchPublic<T>(path: string, tags: string[]): Promise<T> {
   cacheTag(...tags);
   const { data } = await apiFetch<T>(path);
   if (data === undefined || data === null) {
-    throw new Error(`ses-api returned empty data for ${path}`);
+    throw new Error(`Worker API returned empty data for ${path}`);
   }
   return data;
 }

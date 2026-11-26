@@ -1,7 +1,7 @@
 import { z } from "zod";
 import type { ApiSuccess } from "@/types/content";
 
-// Fetch wrapper for ses-api. Unwraps the { data, meta } envelope and turns every failure
+// Fetch wrapper for the SES Worker API. Unwraps the { data, meta } envelope and turns every failure
 // (network, non-2xx, malformed body) into an ApiError with a clear code.
 
 export type ApiErrorCode =
@@ -11,7 +11,7 @@ export type ApiErrorCode =
   | "VALIDATION_ERROR"
   | "RATE_LIMITED"
   | "SERVER_ERROR"
-  | (string & {}); // codes sent by ses-api pass through unchanged
+  | (string & {}); // codes sent by the Worker API pass through unchanged
 
 export class ApiError extends Error {
   readonly code: ApiErrorCode;
@@ -56,7 +56,7 @@ function codeForStatus(status: number): ApiErrorCode {
 }
 
 /**
- * Call ses-api and return the unwrapped envelope.
+ * Call the SES Worker API and return the unwrapped envelope.
  * @param path e.g. "/api/public/events?timeline=upcoming"
  */
 export async function apiFetch<T>(path: string, init?: RequestInit): Promise<ApiSuccess<T>> {
@@ -69,7 +69,7 @@ export async function apiFetch<T>(path: string, init?: RequestInit): Promise<Api
       headers: { Accept: "application/json", ...init?.headers },
     });
   } catch (cause) {
-    throw new ApiError("NETWORK_ERROR", `Could not reach ses-api at ${url}`, 0, cause);
+    throw new ApiError("NETWORK_ERROR", `Could not reach the SES API at ${url}`, 0, cause);
   }
 
   // 201/204 from POST endpoints may have no body.
@@ -79,7 +79,7 @@ export async function apiFetch<T>(path: string, init?: RequestInit): Promise<Api
     try {
       body = JSON.parse(text);
     } catch {
-      throw new ApiError("INVALID_RESPONSE", `ses-api returned non-JSON for ${path}`, res.status);
+      throw new ApiError("INVALID_RESPONSE", `The SES API returned non-JSON for ${path}`, res.status);
     }
   }
 
@@ -89,14 +89,14 @@ export async function apiFetch<T>(path: string, init?: RequestInit): Promise<Api
       const { code, message, details } = parsed.data.error;
       throw new ApiError(code, message, res.status, details);
     }
-    throw new ApiError(codeForStatus(res.status), `ses-api ${res.status} for ${path}`, res.status);
+    throw new ApiError(codeForStatus(res.status), `SES API ${res.status} for ${path}`, res.status);
   }
 
   if (body === undefined) return { data: undefined as T };
 
   const parsed = successSchema.safeParse(body);
   if (!parsed.success) {
-    throw new ApiError("INVALID_RESPONSE", `ses-api response for ${path} has no "data" field`);
+    throw new ApiError("INVALID_RESPONSE", `SES API response for ${path} has no "data" field`);
   }
   return parsed.data as ApiSuccess<T>;
 }

@@ -1,5 +1,5 @@
 // Mirrors docs/API-CONTRACT.md, contract version 1.0 (2026-10-09).
-// Change the contract first (master lives in ses-api), then this file, then the mocks.
+// Update docs/API-CONTRACT.md first, then this file, then the mocks.
 
 /* ───────── Shared pieces ───────── */
 

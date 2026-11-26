@@ -52,8 +52,11 @@ type ActiveDrag = {
 };
 
 const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
-const storeKey = "ses-physics-card:";
-const ballAnchors = [0.18, 0.5, 0.82];
+// Version the position key so stale positions from earlier experiments do not
+// override this deliberately scattered default arrangement.
+const storeKey = "ses-physics-card:v2:";
+const ballAnchors = [0.14, 0.58, 0.9];
+const ballBottomOffsets = [18, 42, 10];
 
 /**
  * Click-to-launch SES physics playground. Cards stay where they are dropped and only fall after
@@ -87,10 +90,12 @@ export function PlayfulPhysicsField({
     const height = board.clientHeight;
     sizeRef.current = { width, height };
     const isNarrow = width < 620;
+    // Four leadership cards form a loose, offset quadrilateral rather than
+    // snapping to identical rows and columns. The margins leave visible gaps.
     const cardAnchors = cards.length > 3
       ? isNarrow
-        ? [[0.02, 0.035], [0.98, 0.035], [0.02, 0.64], [0.98, 0.64]]
-        : [[0.02, 0.04], [0.98, 0.04], [0.02, 0.64], [0.98, 0.64]]
+        ? [[0.03, 0.05], [0.96, 0.17], [0.14, 0.58], [0.98, 0.7]]
+        : [[0.02, 0.05], [0.94, 0.17], [0.12, 0.6], [0.98, 0.73]]
       : [[0.02, 0.045], [0.5, 0.045], [0.98, 0.045]];
 
     const cardNodes = Array.from(board.querySelectorAll<HTMLDivElement>("[data-physics-card]"));
@@ -120,7 +125,11 @@ export function PlayfulPhysicsField({
       const diameter = node.offsetWidth || 68;
       const radius = diameter / 2;
       const x = clamp(ballAnchors[index] * width - radius, 0, Math.max(width - diameter, 0));
-      const y = clamp(height * (0.9 - index * 0.025) - radius, 0, Math.max(height - diameter, 0));
+      const y = clamp(
+        height - diameter - ballBottomOffsets[index],
+        0,
+        Math.max(height - diameter, 0),
+      );
       node.style.left = `${x}px`;
       node.style.top = `${y}px`;
       return { id: index, x, y, vx: 0, vy: 0, awake: false, radius, node };
@@ -504,7 +513,7 @@ export function PlayfulPhysicsField({
             className="ses-physics-orb absolute z-30 flex size-14 items-center justify-center rounded-full border-2 border-white/75 shadow-[0_8px_14px_rgba(8,22,46,0.28),inset_-4px_-5px_9px_rgba(4,21,49,0.24),inset_4px_4px_8px_rgba(255,255,255,0.62)] outline-offset-4 focus-visible:outline-2 focus-visible:outline-link sm:size-16"
             style={{ left: 0, top: 0 }}
           >
-            <Image src="/brand/ses-ball-mark.png" alt="" aria-hidden="true" width={42} height={42} draggable={false} className="relative z-10 size-9 object-contain" />
+            <Image src="/media/v1/brand/ses-ball-mark.png" alt="" aria-hidden="true" width={42} height={42} draggable={false} className="relative z-10 size-9 object-contain" />
           </button>
         ))}
       </div>

@@ -39,7 +39,7 @@ interface DragState {
 
 const STORAGE_KEY = "ses-home-sequential-card-deck:v3";
 const LEGACY_STORAGE_KEY = "ses-home-sequential-card-deck:v2";
-const QUEUE_DURATION = 9_000;
+const QUEUE_DURATION = 3_000;
 const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
 
 function findNextCardIndex(

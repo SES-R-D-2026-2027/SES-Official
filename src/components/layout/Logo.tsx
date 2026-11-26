@@ -28,7 +28,7 @@ export function Logo({ className, onClick }: { className?: string; onClick?: () 
     };
   }, []);
 
-  const logoSrc = theme === "dark" ? "/brand/ses-logo-dark.png" : "/brand/ses-logo-light.png";
+  const logoSrc = theme === "dark" ? "/media/v1/brand/ses-logo-dark.png" : "/media/v1/brand/ses-logo-light.png";
 
   return (
     <Link

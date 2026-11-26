@@ -1,7 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-/** Icon + screen-reader text for links that open in a new tab (CLAUDE.md component rules). */
+/** Icon and screen-reader text for links that open in a new tab. */
 export function ExternalLinkHint({ className }: { className?: string }) {
   return (
     <>

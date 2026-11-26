@@ -66,7 +66,7 @@ export function Hero({ departments, activeProjects }: HeroProps) {
               </HandNote>
               <SequentialCardDeck
                 className="w-full"
-                intervalMs={9000}
+                intervalMs={3000}
                 cards={copy.floats.map((float, index) => ({
                   id: `home-deck-v1-${index}`,
                   title: float.title,

@@ -3,36 +3,57 @@
 /.pnp
 .pnp.*
 
-# Next.js build output
+# Framework and build output
 /.next/
+/.next-dev/
 /out/
+/dist/
 /build/
-
-# Tests, coverage and tool caches
-/coverage/
+/.vinext/
+/.vite/
 /.turbo/
 /.vercel/
 /.cache/
-/.eslintcache
+/coverage/
+/test-results/
+/playwright-report/
 
-# Logs
-npm-debug.log*
-yarn-debug.log*
-pnpm-debug.log*
-lerna-debug.log*
-*.log
+# Cloudflare local state and generated types
+/.cloudflare/
+/.wrangler/
 
-# Local environment and secrets
+# R2 source-media staging directory.
+# Media is stored in the private Cloudflare R2 bucket, not in Git.
+/public/
+
+# Non-runtime planning documents and generated design references
+/docs/DESIGN.md
+/docs/REQUIREMENTS.md
+/docs/reference/
+
+# Local environment, secrets and developer vars
 .env
 .env.*
 !.env.example
 !.env.*.example
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
 
-# TypeScript / generated build metadata
+# TypeScript and framework-generated metadata
 *.tsbuildinfo
-next-env.d.ts
+/next-env.d.ts
 
-# Editor and OS files
+# Logs and runtime artifacts
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.pid
+*.seed
+
+# Editor and operating-system files
 .DS_Store
 Thumbs.db
 .idea/
@@ -40,13 +61,6 @@ Thumbs.db
 !.vscode/extensions.json
 !.vscode/settings.json
 
-# Local archives / generated handoff bundles
-/ses-web-src-finalized.zip
-/ses-web-src-fixed.zip
-/ses-web-src.zip
-/ses-web-src-updated.zip
-/ses-web-src-latest.zip
-/ses-web-src-final.zip
-/dist/
-.vinext/
-.cloudflare/
+# Generated handoff archives at the repository root
+/ses-official*.zip
+/ses-web-src*.zip

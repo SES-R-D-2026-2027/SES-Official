@@ -2,10 +2,10 @@ import type { TeamMember } from "@/types/content";
 import { base } from "./_base";
 
 // Real roster of the 2026-2027 term with photos.
-// Team portraits live in public/images/team/.
+// Team portraits are served from the versioned R2 media library.
 
 export const photo = (filename: string, name: string): TeamMember["photo"] => ({
-  url: `/images/team/${filename}`,
+  url: `/media/v1/images/team/${filename}`,
   alt: `Portrait of ${name}`,
 });
 

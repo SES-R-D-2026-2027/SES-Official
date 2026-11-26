@@ -11,6 +11,7 @@ export default defineConfig({
       },
     }),
     cloudflare({
+      persistState: { path: "./.cloudflare/state/v3" },
       viteEnvironment: {
         name: "rsc",
         childEnvironments: ["ssr"],
