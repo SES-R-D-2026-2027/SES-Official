@@ -47,3 +47,6 @@ Thumbs.db
 /ses-web-src-updated.zip
 /ses-web-src-latest.zip
 /ses-web-src-final.zip
+/dist/
+.vinext/
+.cloudflare/
